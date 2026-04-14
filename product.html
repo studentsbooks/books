@@ -6,118 +6,83 @@
   <title>Book Details | BookAndRead</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .product-detail { max-width: 1280px; margin: 40px auto; padding: 0 20px; display: flex; flex-wrap: wrap; gap: 40px; }
-    .product-detail-image { flex: 0.4; text-align: center; }
-    .product-detail-image img { max-width: 100%; max-height: 500px; object-fit: contain; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .product-detail-info { flex: 1; }
-    .product-detail-info h1 { font-size: 2rem; margin-bottom: 10px; }
-    .product-detail-info .author { font-size: 1.1rem; color: #555; margin-bottom: 20px; }
-    .product-detail-info .description { line-height: 1.6; margin-bottom: 30px; }
-    .product-detail-info .price { font-size: 2rem; font-weight: 700; margin-bottom: 20px; }
-    .btn-purchase { background: #000; color: #fff; padding: 14px 32px; font-size: 1.2rem; font-weight: 600; text-decoration: none; display: inline-block; border: none; cursor: pointer; }
-    .btn-purchase:hover { background: #333; }
-    .back-link { display: inline-block; margin-top: 20px; color: #000; text-decoration: underline; }
-    .popularity-badge { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }
-    .error-message { color: red; padding: 20px; background: #ffeeee; border: 1px solid red; }
+    body { font-family: 'Inter', sans-serif; margin: 0; background: #fff; }
+    .container { max-width: 1280px; margin: 20px auto; padding: 0 20px; }
+    .back-link { color: #000; text-decoration: none; font-weight: 500; }
+    .product-detail { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 30px; }
+    .product-image { flex: 1; min-width: 300px; text-align: center; }
+    .product-image img { max-width: 100%; max-height: 500px; object-fit: contain; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .product-info { flex: 1; min-width: 300px; }
+    .product-info h1 { font-size: 2rem; margin-bottom: 10px; line-height: 1.2; }
+    .author { font-size: 1.1rem; color: #555; margin-bottom: 20px; }
+    .badge { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }
+    .description { line-height: 1.6; margin-bottom: 30px; color: #333; }
+    .price { font-size: 2rem; font-weight: 700; margin-bottom: 20px; }
+    .btn { background: #000; color: #fff; padding: 14px 32px; font-size: 1.2rem; font-weight: 600; text-decoration: none; display: inline-block; border: none; cursor: pointer; }
+    .btn:hover { background: #333; }
+    .error { text-align: center; padding: 50px; font-size: 1.2rem; color: #666; }
   </style>
 </head>
 <body>
-  <div class="top-nav" style="max-width:1280px; margin:20px auto 0; padding:0 16px;">
-    <a href="index.html" class="nav-item">← Back to Home</a>
+  <div class="container">
+    <a href="index.html" class="back-link">← Back to Home</a>
+    <div id="content"></div>
   </div>
-
-  <div id="productDetailContainer" class="product-detail">
-    <div class="error-message" id="errorMessage" style="display:none;"></div>
-    <div id="loadingMessage">Loading book details...</div>
-  </div>
-
-  <template id="productDetailTemplate">
-    <div class="product-detail">
-      <div class="product-detail-image">
-        <img src="" alt="" id="detailImage">
-      </div>
-      <div class="product-detail-info">
-        <h1 id="detailTitle"></h1>
-        <div class="author" id="detailAuthor"></div>
-        <div id="popularityBadge" class="popularity-badge"></div>
-        <div class="description" id="detailDescription"></div>
-        <div class="price" id="detailPrice"></div>
-        <a href="#" class="btn-purchase" id="purchaseButton" target="_blank">Get Book →</a>
-        <div><a href="index.html" class="back-link">← Continue Shopping</a></div>
-      </div>
-    </div>
-  </template>
 
   <script src="js/products.js"></script>
   <script>
-    // Hata ayıklama
-    console.log('PRODUCTS dizisi:', typeof window.PRODUCTS, window.PRODUCTS ? window.PRODUCTS.length : 'undefined');
-    
-    const params = new URLSearchParams(window.location.search);
-    const bookId = params.get('id');
-    console.log('Aranan ID:', bookId);
+    (function() {
+      const content = document.getElementById('content');
+      
+      // PRODUCTS dizisi var mı?
+      if (typeof PRODUCTS === 'undefined') {
+        content.innerHTML = '<div class="error">Error: Product data not found.</div>';
+        return;
+      }
 
-    const loadingEl = document.getElementById('loadingMessage');
-    const errorEl = document.getElementById('errorMessage');
-    const container = document.getElementById('productDetailContainer');
-    const template = document.getElementById('productDetailTemplate');
+      // URL'den id al
+      const params = new URLSearchParams(window.location.search);
+      const id = parseInt(params.get('id'));
+      
+      if (!id) {
+        content.innerHTML = '<div class="error">No book selected. <a href="index.html">Browse books</a>.</div>';
+        return;
+      }
 
-    function showError(msg) {
-      loadingEl.style.display = 'none';
-      errorEl.style.display = 'block';
-      errorEl.textContent = 'Error: ' + msg;
-    }
-
-    if (!bookId) {
-      showError('No book ID provided in URL (?id=1)');
-    } else if (!window.PRODUCTS) {
-      showError('PRODUCTS array not found. Make sure js/products.js is loaded correctly.');
-    } else if (!Array.isArray(window.PRODUCTS)) {
-      showError('PRODUCTS is not an array. Check js/products.js syntax.');
-    } else {
-      const book = window.PRODUCTS.find(b => b.id == bookId);
-      console.log('Bulunan kitap:', book);
+      // Kitabı bul
+      const book = PRODUCTS.find(p => p.id === id);
       
       if (!book) {
-        showError('Book with ID ' + bookId + ' not found in PRODUCTS array.');
-      } else {
-        // Kitap bulundu, sayfayı doldur
-        loadingEl.style.display = 'none';
-        
-        // Template'i klonla
-        const clone = template.content.cloneNode(true);
-        
-        // Başlık ve meta
-        document.title = book.title + ' | BookAndRead';
-        const metaDesc = document.createElement('meta');
-        metaDesc.name = 'description';
-        metaDesc.content = book.description || 'Digital study resource available for instant access.';
-        document.head.appendChild(metaDesc);
-        
-        // Resim
-        const img = clone.querySelector('#detailImage');
-        img.src = 'images/books/' + book.image;
-        img.alt = book.title;
-        
-        // Metinler
-        clone.querySelector('#detailTitle').textContent = book.title;
-        clone.querySelector('#detailAuthor').textContent = 'by ' + book.author;
-        clone.querySelector('#detailDescription').textContent = book.description || 'No description available.';
-        clone.querySelector('#detailPrice').textContent = '$' + book.price;
-        
-        // Satın alma butonu
-        const btn = clone.querySelector('#purchaseButton');
-        btn.href = book.fourthwall_url;
-        
-        // Popülerlik rozeti
-        const count = 40 + (book.id % 50);
-        clone.querySelector('#popularityBadge').innerHTML = `🔥 <strong>${count}</strong> readers accessed this book in the last 24 hours.`;
-        
-        // Container'ı temizle ve yeni içeriği ekle
-        container.innerHTML = '';
-        container.appendChild(clone);
+        content.innerHTML = '<div class="error">Book not found. <a href="index.html">Browse all books</a>.</div>';
+        return;
       }
-    }
+
+      // Sayfa başlığı
+      document.title = book.title + ' | BookAndRead';
+      
+      // Popülerlik
+      const hotness = 40 + (book.id % 50);
+      
+      // HTML oluştur
+      const html = `
+        <div class="product-detail">
+          <div class="product-image">
+            <img src="images/books/${book.image}" alt="${book.title}" onerror="this.src='https://placehold.co/400x500?text=Cover'">
+          </div>
+          <div class="product-info">
+            <h1>${book.title}</h1>
+            <div class="author">by ${book.author}</div>
+            <div class="badge">🔥 <strong>${hotness}</strong> readers accessed this book in the last 24 hours.</div>
+            <div class="description">${book.description}</div>
+            <div class="price">$${book.price}</div>
+            <a href="${book.fourthwall_url}" target="_blank" class="btn">Get Book →</a>
+            <div style="margin-top: 20px;"><a href="index.html" class="back-link">← Continue Shopping</a></div>
+          </div>
+        </div>
+      `;
+      
+      content.innerHTML = html;
+    })();
   </script>
 </body>
 </html>
