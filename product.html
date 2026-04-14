@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Details | BookAndRead</title>
+  <title id="pageTitle">Book Details | BookAndRead</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
     body { font-family: 'Inter', sans-serif; margin: 0; background: #fff; }
@@ -33,14 +33,13 @@
   <script>
     (function() {
       const content = document.getElementById('content');
+      const pageTitle = document.getElementById('pageTitle');
       
-      // PRODUCTS dizisi var mı?
       if (typeof PRODUCTS === 'undefined') {
         content.innerHTML = '<div class="error">Error: Product data not found.</div>';
         return;
       }
 
-      // URL'den id al
       const params = new URLSearchParams(window.location.search);
       const id = parseInt(params.get('id'));
       
@@ -49,7 +48,6 @@
         return;
       }
 
-      // Kitabı bul
       const book = PRODUCTS.find(p => p.id === id);
       
       if (!book) {
@@ -57,13 +55,11 @@
         return;
       }
 
-      // Sayfa başlığı
-      document.title = book.title + ' | BookAndRead';
+      // SEO Başlığını hemen güncelle
+      pageTitle.textContent = book.title + ' | BookAndRead';
       
-      // Popülerlik
       const hotness = 40 + (book.id % 50);
       
-      // HTML oluştur
       const html = `
         <div class="product-detail">
           <div class="product-image">
