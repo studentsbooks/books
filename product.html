@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="productTitle">Book Details | BookAndRead</title>
-  <meta name="description" id="productMeta" content="">
+  <title>Book Details | BookAndRead</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
     .product-detail { max-width: 1280px; margin: 40px auto; padding: 0 20px; display: flex; flex-wrap: wrap; gap: 40px; }
@@ -17,11 +16,7 @@
     .product-detail-info .price { font-size: 2rem; font-weight: 700; margin-bottom: 20px; }
     .btn-purchase { background: #000; color: #fff; padding: 14px 32px; font-size: 1.2rem; font-weight: 600; text-decoration: none; display: inline-block; border: none; cursor: pointer; }
     .btn-purchase:hover { background: #333; }
-    .back-link { display: inline-block; margin-top: 20px; color: #000; text-decoration: underline; }
     .popularity-badge { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }
-    @media (max-width: 768px) {
-      .product-detail { flex-direction: column; }
-    }
   </style>
 </head>
 <body>
@@ -30,62 +25,34 @@
   </div>
 
   <div id="productDetailContainer" class="product-detail">
-    <!-- JavaScript ile doldurulacak -->
+    <div style="text-align:center; padding:40px;">Loading book details...</div>
   </div>
 
-  <template id="productDetailTemplate">
-    <div class="product-detail">
-      <div class="product-detail-image">
-        <img src="" alt="" id="detailImage">
-      </div>
-      <div class="product-detail-info">
-        <h1 id="detailTitle"></h1>
-        <div class="author" id="detailAuthor"></div>
-        <div id="popularityBadge" class="popularity-badge"></div>
-        <div class="description" id="detailDescription"></div>
-        <div class="price" id="detailPrice"></div>
-        <a href="#" class="btn-purchase" id="purchaseButton" target="_blank">Get Book →</a>
-        <div><a href="index.html" class="back-link">← Continue Shopping</a></div>
-      </div>
-    </div>
-  </template>
-
+  <script src="js/products.js"></script>
   <script>
-    // Kitap verisini URL'deki id parametresine göre çek (gerçekte CSV'den oluşturulmuş JS verisi)
     const params = new URLSearchParams(window.location.search);
     const bookId = params.get('id');
-    
-    // Örnek veri (normalde bu veri bir JS dosyasından gelecek - CSV'den derlenmiş)
-    // Gerçek sistemde bu veri products.js içinde olacak.
-    const booksData = [
-      // Buraya CSV'deki kitapların temel bilgileri gelecek (id, title, author, price, description, image, fourthwall_url)
-      { id: 1, title: "Sample Book", author: "Sample Author", price: "9.99", description: "Sample description.", image: "https://placehold.co/400x500?text=Book", fourthwall_url: "#" }
-    ];
+    const products = window.PRODUCTS || [];
+    const book = products.find(b => b.id == bookId);
 
-    if (bookId) {
-      const book = booksData.find(b => b.id == bookId);
-      if (book) {
-        document.getElementById('productTitle').textContent = book.title + ' | BookAndRead';
-        document.getElementById('productMeta').setAttribute('content', book.description);
-        document.getElementById('detailImage').src = '/images/books/' + book.image;
-        document.getElementById('detailImage').alt = book.title;
-        document.getElementById('detailTitle').textContent = book.title;
-        document.getElementById('detailAuthor').textContent = 'by ' + book.author;
-        document.getElementById('detailDescription').textContent = book.description;
-        document.getElementById('detailPrice').textContent = '$' + book.price;
-        document.getElementById('purchaseButton').href = book.fourthwall_url;
-        
-        // Popülerlik rozeti (rastgele ama tutarlı)
-        const count = 40 + (book.id % 50);
-        document.getElementById('popularityBadge').innerHTML = `🔥 <strong>${count}</strong> readers accessed this book in the last 24 hours.`;
-        
-        // Template içeriğini container'a taşı
-        const template = document.getElementById('productDetailTemplate');
-        const clone = template.content.cloneNode(true);
-        const container = document.getElementById('productDetailContainer');
-        container.innerHTML = '';
-        container.appendChild(clone);
-      }
+    if (book) {
+      document.title = book.title + ' | BookAndRead';
+      const container = document.getElementById('productDetailContainer');
+      container.innerHTML = `
+        <div class="product-detail-image">
+          <img src="images/books/${book.image}" alt="${book.title}" onerror="this.src='https://placehold.co/400x500?text=Cover'">
+        </div>
+        <div class="product-detail-info">
+          <h1>${book.title}</h1>
+          <div class="author">by ${book.author}</div>
+          <div class="popularity-badge">🔥 <strong>${40 + (book.id % 50)}</strong> readers accessed this book in the last 24 hours.</div>
+          <div class="description">${book.description || 'No description available.'}</div>
+          <div class="price">$${book.price}</div>
+          <a href="${book.fourthwall_url}" class="btn-purchase" target="_blank">Get Book →</a>
+        </div>
+      `;
+    } else {
+      document.getElementById('productDetailContainer').innerHTML = '<div style="text-align:center; padding:40px;">Book not found.</div>';
     }
   </script>
 </body>
