@@ -1,0 +1,42 @@
+name: Build and Deploy Static Site
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'products.csv'
+      - '_config.yml'
+      - 'images/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run build script
+        run: |
+          echo "Site build started..."
+          # Burada CSV'den HTML oluşturan script çalışacak (basit bir örnek)
+          mkdir -p _site
+          cp index.html _site/ 2>/dev/null || echo "index.html not found"
+          cp -r css _site/ 2>/dev/null
+          cp -r js _site/ 2>/dev/null
+          cp -r images _site/ 2>/dev/null
+          echo "Build completed"
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          publish_branch: gh-pages
