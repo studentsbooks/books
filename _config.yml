@@ -1,1 +1,31 @@
+# Site Ayarları - BookAndRead Ana Repo
+site_name: "BookAndRead"
+site_description: "Digital Study Resources"
+coupon_code: "WELCOME10"
+primary_color: "#1a1a1a"
+secondary_color: "#ffffff"
+accent_color: "#000000"
+font_family: "Inter, sans-serif"
 
+# Slider Ayarları
+slider:
+  enabled: true
+  slides:
+    - image: "https://placehold.co/1200x400/1a1a1a/ffffff?text=Medical+%26+Nursing"
+      title: "Medical & Nursing Resources"
+      description: "Access essential textbooks for healthcare professionals"
+      button_text: "Explore Collection →"
+      link: "/collections/medical-nursing"
+    - image: "https://placehold.co/1200x400/2c3e50/ffffff?text=Test+Prep+2026"
+      title: "Test Prep & AP Guides 2026"
+      description: "Prepare for success with premium study materials"
+      button_text: "View Guides →"
+      link: "/collections/test-prep"
+    - image: "https://placehold.co/1200x400/1b4332/ffffff?text=Engineering+%26+Math"
+      title: "Engineering & Mathematics"
+      description: "Core textbooks for STEM students"
+      button_text: "Browse Books →"
+      link: "/collections/engineering-mathematics"
+
+# Footer
+footer_text: "© 2025 BookAndRead. Digital resources for students."
