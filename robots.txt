@@ -1,5 +1,4 @@
 User-agent: *
 Disallow: /images/
-Allow: /index.html
-Allow: /products/
+Allow: /
 Sitemap: https://studentsbooks.github.io/books/sitemap.xml
