@@ -3,245 +3,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BookAndRead | Digital Study Resources 2026 – Medical, Nursing, Test Prep &amp; More</title>
-  <meta name="description" content="BookAndRead offers digital study resources for Medical &amp; Nursing, Test Prep, Engineering, Business, Psychology, and more. Instant access after purchase.">
-  
+  <title id="pageTitle">Book Details | BookAndRead</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background:#fff; color:#000; }
-    .top-nav { max-width:1280px; margin:20px auto 0; padding:0 16px; display:flex; gap:24px; border-bottom:1px solid #e0e0e0; padding-bottom:12px; flex-wrap:wrap; }
-    .nav-item { font-weight:600; cursor:pointer; position:relative; font-size:1rem; padding:4px 0; }
-    .dropdown-menu { position:absolute; top:100%; left:0; background:#fff; border:1px solid #e0e0e0; box-shadow:0 4px 12px rgba(0,0,0,0.1); min-width:220px; z-index:100; display:none; padding:12px 0; margin-top:0; }
-    .dropdown-menu.show { display:block; }
-    .dropdown-menu a { display:block; padding:8px 20px; text-decoration:none; color:#000; font-size:0.85rem; border-bottom:1px solid #f0f0f0; }
-    .dropdown-menu a:hover { background:#f5f5f5; }
-    .custom-slider-wrapper { position:relative; max-width:1280px; margin:30px auto 0; overflow:hidden; background:#f5f5f5; border:1px solid #e5e5e5; }
-    .custom-slides { display:flex; transition:transform 0.5s; }
-    .custom-slide { min-width:100%; display:flex; align-items:center; padding:40px 56px; gap:40px; background:#fff; flex-wrap:wrap; }
-    .custom-slide-content { flex:1; }
-    .custom-slide-content h2 { font-size:2rem; margin-bottom:1rem; }
-    .custom-slide-btn { background:#000; color:#fff; padding:12px 28px; text-decoration:none; display:inline-block; }
-    .custom-slider-btn { position:absolute; top:50%; transform:translateY(-50%); background:#000; color:#fff; border:none; width:44px; height:44px; font-size:1.8rem; cursor:pointer; opacity:0; transition:0.2s; z-index:10; }
-    .custom-slider-wrapper:hover .custom-slider-btn { opacity:0.8; }
-    .custom-slider-left { left:20px; } .custom-slider-right { right:20px; }
-    .slider-controls { display:flex; justify-content:center; gap:16px; margin:16px 0; }
-    .slider-indicators { display:flex; gap:10px; }
-    .indicator-dot { width:10px; height:10px; background:#ccc; border-radius:50%; cursor:pointer; }
-    .indicator-dot.active { background:#000; }
-    .play-pause-btn { background:transparent; border:none; font-size:1.2rem; cursor:pointer; }
-    .category-section { max-width:1280px; margin:48px auto; padding:0 16px; }
-    .category-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:20px; }
-    .category-head h2 { font-size:1.4rem; }
-    .see-all-btn { background:#000; color:#fff; padding:4px 12px; font-size:0.7rem; text-decoration:none; }
-    .carousel-container { overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
-    .carousel-container::-webkit-scrollbar { display:none; }
-    .carousel-track { display:flex; gap:16px; }
-    .product-card { flex:0 0 calc(20% - 13px); min-width:180px; text-decoration:none; color:inherit; background:#fff; border:1px solid #eee; transition:transform 0.2s, box-shadow 0.2s; scroll-snap-align:start; display:flex; flex-direction:column; }
-    .product-card:hover { transform:translateY(-4px); box-shadow:0 6px 12px rgba(0,0,0,0.05); }
-    .product-img { aspect-ratio:3/4; background:#fafafa; display:flex; align-items:center; justify-content:center; padding:8px; border-bottom:1px solid #f0f0f0; }
-    .product-img img { max-width:100%; max-height:100%; object-fit:contain; }
-    .product-info { padding:10px; display:flex; flex-direction:column; flex-grow:1; }
-    .popularity-mini { font-size:0.6rem; color:#0066cc; margin-bottom:4px; }
-    .product-title { font-size:0.75rem; font-weight:500; line-height:1.3; margin-bottom:8px; flex-grow:1; }
-    .btn-view { background:#000; color:#fff; padding:8px 10px; font-size:0.7rem; text-decoration:none; display:block; text-align:center; margin-top:auto; border:none; cursor:pointer; }
-    .btn-view:hover { background:#333; }
-    .hamburger { display:none; }
+    body { font-family:'Inter', sans-serif; background:#f9f9f9; color:#1a1a1a; line-height:1.5; }
+    .page-wrapper { max-width:1280px; margin:0 auto; padding:20px; }
+    .nav-back { margin-bottom:24px; }
+    .nav-back a { color:#1a1a1a; text-decoration:none; font-weight:500; }
+    .product-main { background:#fff; border-radius:16px; box-shadow:0 8px 30px rgba(0,0,0,0.05); padding:40px; display:flex; flex-wrap:wrap; gap:40px; margin-bottom:40px; }
+    .product-gallery { flex:1 1 300px; display:flex; flex-direction:column; align-items:center; }
+    .product-gallery img { max-width:100%; max-height:500px; object-fit:contain; border-radius:8px; }
+    .product-details { flex:1 1 400px; }
+    .product-details h1 { font-size:2rem; font-weight:700; margin-bottom:12px; }
+    .product-author { font-size:1.1rem; color:#555; margin-bottom:16px; }
+    .product-meta { display:flex; flex-wrap:wrap; gap:16px 24px; margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid #eee; }
+    .meta-item { display:flex; align-items:center; gap:8px; font-size:0.9rem; color:#666; }
+    .popularity-badge { background:#f0f7ff; color:#0066cc; padding:8px 16px; border-radius:30px; font-weight:500; display:inline-block; margin-bottom:20px; }
+    .product-description { margin-bottom:24px; color:#333; }
+    .purchase-section { margin-top:10px; }
+    .purchase-section img { max-width:220px; height:auto; cursor:pointer; }
+    .recommendations { margin-top:40px; }
+    .recommendations h2 { font-size:1.8rem; margin-bottom:24px; }
+    .book-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:20px; }
+    .book-card { background:#fff; border-radius:12px; overflow:hidden; text-decoration:none; color:inherit; transition:transform 0.2s; display:flex; flex-direction:column; height:100%; }
+    .book-card:hover { transform:translateY(-4px); box-shadow:0 12px 24px rgba(0,0,0,0.08); }
+    .book-card-img { aspect-ratio:3/4; background:#fafafa; display:flex; align-items:center; justify-content:center; padding:12px; }
+    .book-card-img img { max-width:100%; max-height:100%; object-fit:contain; }
+    .book-card-info { padding:12px; flex-grow:1; display:flex; flex-direction:column; }
+    .book-card-title { font-size:0.85rem; font-weight:500; line-height:1.3; margin-bottom:8px; flex-grow:1; }
+    .book-card-btn { margin-top:auto; }
+    .book-card-btn img { width:100%; max-width:120px; height:auto; }
+    .order-toast { position:fixed; bottom:20px; left:20px; background:#1a1a1a; color:#fff; padding:16px 24px; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.2); z-index:1000; display:flex; align-items:center; gap:12px; max-width:350px; animation:slideIn 0.4s; }
+    .order-toast img { width:40px; height:40px; border-radius:50%; object-fit:cover; background:#333; }
+    .order-toast-content p { margin:0; font-size:0.9rem; }
+    .order-toast-content small { color:#aaa; font-size:0.75rem; }
+    @keyframes slideIn { from { opacity:0; transform:translateX(-20px); } to { opacity:1; transform:translateX(0); } }
     @media (max-width:768px) {
-      .hamburger { display:block; position:fixed; top:16px; right:16px; z-index:200; background:#000; color:#fff; border:none; width:44px; height:44px; font-size:24px; border-radius:4px; }
-      .top-nav { display:none; position:fixed; top:70px; left:0; right:0; background:#fff; z-index:150; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,0.1); flex-direction:column; }
-      .top-nav.show { display:flex; }
-      .custom-slider-btn { display:none; }
-      .custom-slide { padding:20px 16px; }
-      .product-card { flex:0 0 calc(45% - 8px); min-width:140px; }
+      .product-main { padding:24px; }
+      .book-grid { grid-template-columns:repeat(2, 1fr); }
     }
-    .coupon-banner { background:#000; color:#fff; text-align:center; padding:8px; position:sticky; top:0; z-index:50; }
-    .coupon-code { background:#333; padding:2px 8px; border-radius:4px; margin:0 4px; cursor:pointer; }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<!-- Kupon Banner (gecikmeli) -->
-<div id="coupon-banner-container"></div>
-<template id="coupon-banner-template">
-  <div class="coupon-banner">
-    🎁 <strong>First purchase special:</strong> Use code 
-    <span class="coupon-code" onclick="navigator.clipboard?.writeText('WELCOME10')">WELCOME10</span> for 10% off.
+  <div class="page-wrapper">
+    <div class="nav-back"><a href="index.html">← Back to Books</a></div>
+    <div id="productContent"></div>
+    <div id="recommendationsContent" class="recommendations"></div>
   </div>
-</template>
 
-<!-- Mobil Hamburger -->
-<button class="hamburger" id="hamburgerBtn">☰</button>
-
-<!-- Yatay Menü -->
-<div class="top-nav" id="topNav">
-  <div class="nav-item" id="categoriesNav">
-    <span>Categories ▼</span>
-    <div class="dropdown-menu" id="categoriesDropdown"></div>
-  </div>
-  <div class="nav-item" id="authorsNav">
-    <span>Authors ▼</span>
-    <div class="dropdown-menu" id="authorsDropdown">
-      <a href="#">Frank H. Netter</a><a href="#">John E. Hall</a><a href="#">J. Larry Jameson</a>
-      <a href="#">Tao Le</a><a href="#">Patricia A. Potter</a><a href="#">See all →</a>
+  <template id="orderToastTemplate">
+    <div class="order-toast">
+      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="customer">
+      <div class="order-toast-content">
+        <p><span id="toastMessage"></span></p>
+        <small>just now</small>
+      </div>
     </div>
-  </div>
-  <a href="#" class="nav-item">Blog</a>
-</div>
+  </template>
 
-<!-- Slider -->
-<div class="custom-slider-wrapper" id="customSlider">
-  <div class="custom-slides" id="customSlides"></div>
-  <button class="custom-slider-btn custom-slider-left" id="customPrev">←</button>
-  <button class="custom-slider-btn custom-slider-right" id="customNext">→</button>
-</div>
-<div class="slider-controls">
-  <div class="slider-indicators" id="sliderIndicators"></div>
-  <button class="play-pause-btn" id="playPauseBtn">⏸</button>
-</div>
+  <script src="js/products.js"></script>
+  <script>
+    (function() {
+      const productContainer = document.getElementById('productContent');
+      const recContainer = document.getElementById('recommendationsContent');
+      const pageTitle = document.getElementById('pageTitle');
+      
+      if (typeof PRODUCTS === 'undefined') return;
+      const params = new URLSearchParams(window.location.search);
+      const id = parseInt(params.get('id'));
+      if (!id) return;
+      const book = PRODUCTS.find(p => p.id === id);
+      if (!book) return;
 
-<!-- Kategoriler ve Ürünler -->
-<div id="categoriesContainer" style="max-width:1280px; margin:0 auto; padding:0 16px;"></div>
-
-<script src="js/products.js"></script>
-<script>
-  // ==================== SLIDER ====================
-  const slidesData = [
-    { title:"Medical & Nursing Resources", desc:"Access essential textbooks", image:"https://placehold.co/600x400/1a1a1a/fff?text=Medical+Nursing", url:"https://bookandread.store/collections/medical-nursing" },
-    { title:"Test Prep & AP Guides", desc:"Premium study materials", image:"https://placehold.co/600x400/2c3e50/fff?text=Test+Prep", url:"https://bookandread.store/collections/test-prep" },
-    { title:"Engineering & Math", desc:"Core STEM textbooks", image:"https://placehold.co/600x400/1b4332/fff?text=Engineering", url:"https://bookandread.store/collections/engineering-mathematics" }
-  ];
-  let currentSlide=0, slideInterval, isPlaying=true;
-  function renderSlides() {
-    document.getElementById('customSlides').innerHTML = slidesData.map(s => `
-      <div class="custom-slide">
-        <div class="custom-slide-content"><h2>${s.title}</h2><p>${s.desc}</p><a href="${s.url}" class="custom-slide-btn">Explore →</a></div>
-        <div class="custom-slide-image"><img src="${s.image}" alt="${s.title}"></div>
-      </div>
-    `).join('');
-    updateIndicators();
-  }
-  function updateIndicators() {
-    document.getElementById('sliderIndicators').innerHTML = slidesData.map((_,i) => `<span class="indicator-dot ${i===currentSlide?'active':''}" data-index="${i}"></span>`).join('');
-    document.querySelectorAll('.indicator-dot').forEach(d => d.addEventListener('click', e => {
-      currentSlide = parseInt(e.target.dataset.index); updateSlide(); resetTimer();
-    }));
-  }
-  function updateSlide() { document.getElementById('customSlides').style.transform = `translateX(-${currentSlide*100}%)`; updateIndicators(); }
-  function nextSlide() { currentSlide = (currentSlide+1)%slidesData.length; updateSlide(); }
-  function prevSlide() { currentSlide = (currentSlide-1+slidesData.length)%slidesData.length; updateSlide(); }
-  function startTimer() { slideInterval = setInterval(nextSlide, 5000); isPlaying=true; document.getElementById('playPauseBtn').textContent='⏸'; }
-  function stopTimer() { clearInterval(slideInterval); isPlaying=false; document.getElementById('playPauseBtn').textContent='▶'; }
-  function resetTimer() { if(isPlaying) { stopTimer(); startTimer(); } }
-  document.getElementById('customNext').addEventListener('click', ()=>{ nextSlide(); resetTimer(); });
-  document.getElementById('customPrev').addEventListener('click', ()=>{ prevSlide(); resetTimer(); });
-  document.getElementById('playPauseBtn').addEventListener('click', ()=> isPlaying ? stopTimer() : startTimer());
-  renderSlides(); startTimer();
-
-  // ==================== KATEGORİ VE ÜRÜNLER ====================
-  const products = typeof PRODUCTS !== 'undefined' ? PRODUCTS : [];
-  const categories = [...new Set(products.map(p => p.category))].filter(Boolean).sort();
-  
-  // Dropdown menü (gecikmeli kapanma)
-  const dropdown = document.getElementById('categoriesDropdown');
-  const catNav = document.getElementById('categoriesNav');
-  let closeTimeout = null;
-  
-  dropdown.innerHTML = categories.map(cat => {
-    const slug = cat.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '');
-    return `<a href="#" data-category="${cat}" data-slug="${slug}">${cat}</a>`;
-  }).join('');
-  
-  function openDropdown() { if(closeTimeout) clearTimeout(closeTimeout); dropdown.classList.add('show'); }
-  function closeDropdown() { dropdown.classList.remove('show'); }
-  function scheduleClose() { closeTimeout = setTimeout(closeDropdown, 300); }
-  
-  catNav.addEventListener('mouseenter', openDropdown);
-  catNav.addEventListener('mouseleave', scheduleClose);
-  dropdown.addEventListener('mouseenter', openDropdown);
-  dropdown.addEventListener('mouseleave', scheduleClose);
-  
-  // Koleksiyon linkleri (Fourthwall)
-  const collectionMap = {
-    'medical-nursing': 'https://bookandread.store/collections/medical-nursing',
-    'natural-sciences': 'https://bookandread.store/collections/natural-sciences',
-    'software-computer-science': 'https://bookandread.store/collections/software-computer-science',
-    'psychology-counseling': 'https://bookandread.store/collections/psychology-counseling',
-    'engineering-mathematics': 'https://bookandread.store/collections/engineering-mathematics',
-    'business-career': 'https://bookandread.store/collections/business-career',
-    'education': 'https://bookandread.store/collections/education',
-    'herbal-alternative-medicine': 'https://bookandread.store/collections/herbal-alternative-medicine',
-    'bestseller-novels': 'https://bookandread.store/collections/bestseller-novels',
-    'history-humanities': 'https://bookandread.store/collections/history-humanities',
-    'textbooks': 'https://bookandread.store/collections/textbooks',
-    'best-seller': 'https://bookandread.store/collections/best-seller'
-  };
-  
-  dropdown.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const slug = link.dataset.slug;
-      if (collectionMap[slug]) window.location.href = collectionMap[slug];
-      closeDropdown();
-    });
-  });
-  
-  // Mobil hamburger
-  document.getElementById('hamburgerBtn').addEventListener('click', () => {
-    document.getElementById('topNav').classList.toggle('show');
-  });
-  
-  // Kategori bölümleri
-  const container = document.getElementById('categoriesContainer');
-  categories.forEach(cat => {
-    const catProducts = products.filter(p => p.category === cat);
-    if (catProducts.length === 0) return;
-    
-    const section = document.createElement('section');
-    section.className = 'category-section';
-    const slug = cat.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '');
-    
-    // "See all" butonu GitHub kategori sayfasına yönlendirir
-    section.innerHTML = `
-      <div class="category-head">
-        <h2>${cat}</h2>
-        <a href="category.html?cat=${encodeURIComponent(cat)}" class="see-all-btn">See all →</a>
-      </div>
-      <div class="carousel-container">
-        <div class="carousel-track" id="track-${slug}"></div>
-      </div>
-    `;
-    container.appendChild(section);
-    
-    const track = document.getElementById(`track-${slug}`);
-    catProducts.forEach(book => {
-      const card = document.createElement('a');
-      card.className = 'product-card';
-      card.href = `product.html?id=${book.id}`;
-      // Mini popülerlik rozeti
-      const miniHotness = Math.floor(Math.random() * 41) + 35;
-      card.innerHTML = `
-        <div class="product-img">
-          <img src="images/books/${book.image}" alt="${book.title}" loading="lazy" onerror="this.src='https://placehold.co/400x500?text=Cover'">
-        </div>
-        <div class="product-info">
-          <div class="popularity-mini">🔥 ${miniHotness} views</div>
-          <div class="product-title">${book.title}</div>
-          <span class="btn-view">View Details →</span>
+      const hotness = Math.floor(Math.random() * 41) + 35;
+      pageTitle.textContent = `${book.title} | BookAndRead`;
+      
+      // ISBN ve Year sadece varsa gösterilecek
+      const isbn = book.isbn || book.ISBN || '';
+      const year = book.year || book.Year || '';
+      const priceFormatted = book.price.replace(',', '.');
+      
+      // Meta bilgileri oluştur
+      let metaHTML = `<div class="meta-item">📚 Category: ${book.category}</div>`;
+      if (isbn) metaHTML += `<div class="meta-item">🔖 ISBN: ${isbn}</div>`;
+      if (year) metaHTML += `<div class="meta-item">📅 Year: ${year}</div>`;
+      metaHTML += `<div class="meta-item">💻 Type: Digital Access</div>`;
+      
+      productContainer.innerHTML = `
+        <div class="product-main">
+          <div class="product-gallery">
+            <img src="images/books/${book.image}" alt="${book.title}" onerror="this.src='https://placehold.co/600x800?text=Cover'">
+          </div>
+          <div class="product-details">
+            <h1>${book.title}</h1>
+            <div class="product-author">by ${book.author}</div>
+            <div class="product-meta">${metaHTML}</div>
+            <div class="popularity-badge">🔥 ${hotness} people accessed this book recently</div>
+            <div class="product-description"><p>${book.description}</p></div>
+            <div class="purchase-section">
+              <a href="${book.fourthwall_url}" target="_blank">
+                <img src="images/buttons/btn-${priceFormatted}.png" alt="Get Book" onerror="this.src='images/buttons/btn-9.99.png'">
+              </a>
+            </div>
+          </div>
         </div>
       `;
-      track.appendChild(card);
-    });
-  });
+      
+      // You May Also Like
+      const sameCategory = PRODUCTS.filter(p => p.category === book.category && p.id !== book.id);
+      const recommended = sameCategory.sort(() => 0.5 - Math.random()).slice(0, 4);
+      if (recommended.length) {
+        let recHTML = '<h2>You May Also Like</h2><div class="book-grid">';
+        recommended.forEach(rec => {
+          const recPrice = rec.price.replace(',', '.');
+          recHTML += `
+            <a href="product.html?id=${rec.id}" class="book-card">
+              <div class="book-card-img">
+                <img src="images/books/${rec.image}" alt="${rec.title}" loading="lazy" onerror="this.src='https://placehold.co/400x500?text=Cover'">
+              </div>
+              <div class="book-card-info">
+                <div class="book-card-title">${rec.title}</div>
+                <div class="book-card-btn">
+                  <img src="images/buttons/btn-${recPrice}.png" alt="Get Book" onerror="this.src='images/buttons/btn-9.99.png'">
+                </div>
+              </div>
+            </a>
+          `;
+        });
+        recHTML += '</div>';
+        recContainer.innerHTML = recHTML;
+      }
 
-  // Kupon banner (gecikmeli)
-  setTimeout(() => {
-    const template = document.getElementById('coupon-banner-template');
-    if (template) {
-      const clone = template.content.cloneNode(true);
-      document.getElementById('coupon-banner-container').appendChild(clone);
-    }
-  }, 1000);
-</script>
+      // Sahte Sipariş Bildirimi
+      const names = ["James", "Emma", "Michael", "Sophia", "William", "Olivia", "Alexander", "Isabella", "Daniel", "Mia"];
+      const cities = ["New York", "Los Angeles", "London", "Sydney", "Toronto", "Chicago", "Houston", "Phoenix", "Melbourne", "Manchester"];
+      const countries = ["USA", "UK", "Canada", "Australia"];
+      
+      function showOrderToast() {
+        const template = document.getElementById('orderToastTemplate');
+        if (!template) return;
+        const clone = template.content.cloneNode(true);
+        const toastMessage = clone.querySelector('#toastMessage');
+        const randomName = names[Math.floor(Math.random() * names.length)];
+        const randomCity = cities[Math.floor(Math.random() * cities.length)];
+        const randomCountry = countries[Math.floor(Math.random() * countries.length)];
+        const sameCatBooks = PRODUCTS.filter(p => p.category === book.category);
+        const randomBook = sameCatBooks[Math.floor(Math.random() * sameCatBooks.length)] || book;
+        toastMessage.textContent = `${randomName} from ${randomCity}, ${randomCountry} purchased "${randomBook.title.substring(0, 40)}..."`;
+        document.body.appendChild(clone);
+        setTimeout(() => { const toast = document.querySelector('.order-toast'); if (toast) toast.remove(); }, 5000);
+      }
+      
+      setTimeout(() => { showOrderToast(); }, 2000 + Math.random() * 2000);
+      setInterval(() => { showOrderToast(); }, 15000 + Math.random() * 10000);
+    })();
+  </script>
 </body>
 </html>
