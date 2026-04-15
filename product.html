@@ -62,9 +62,7 @@
     if (year) metaHTML += `<div class="meta-item">📅 Year: ${year}</div>`;
     metaHTML += `<div class="meta-item">💻 Type: Digital Access</div>`;
 
-    // Base64 encode the URL to hide from bots
     const encodedUrl = btoa(book.fourthwall_url);
-    const decodedUrl = atob(encodedUrl); // for direct use if needed
 
     productContainer.innerHTML = `
       <div class="product-main">
@@ -84,7 +82,6 @@
       </div>
     `;
 
-    // Decode and redirect on click
     document.querySelector('.purchase-link').addEventListener('click', (e) => {
       e.preventDefault();
       const encoded = e.currentTarget.dataset.encodedUrl;
