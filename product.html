@@ -5,53 +5,98 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="pageTitle">Book Details | BookAndRead</title>
   <link rel="stylesheet" href="css/style.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Basit ve temiz ürün sayfası stilleri */
-    body { font-family: 'Inter', sans-serif; margin: 0; background: #fff; color: #111; }
-    .container { max-width: 1280px; margin: 20px auto; padding: 0 20px; }
-    .back-link { color: #000; text-decoration: none; font-weight: 500; display: inline-block; margin-bottom: 20px; }
-    .product-detail { display: flex; flex-wrap: wrap; gap: 40px; }
-    .product-image { flex: 1; min-width: 300px; text-align: center; }
-    .product-image img { max-width: 100%; max-height: 500px; object-fit: contain; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    .product-info { flex: 1; min-width: 300px; }
-    .product-info h1 { font-size: 2rem; margin-bottom: 10px; line-height: 1.2; }
-    .author { font-size: 1.1rem; color: #555; margin-bottom: 15px; }
-    .badge { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }
-    .description { line-height: 1.6; margin-bottom: 25px; color: #333; }
-    .price { font-size: 2rem; font-weight: 700; margin-bottom: 20px; }
-    .btn { background: #000; color: #fff; padding: 14px 32px; font-size: 1.2rem; font-weight: 600; text-decoration: none; display: inline-block; border: none; cursor: pointer; }
-    .btn:hover { background: #333; }
-    .error { text-align: center; padding: 50px; font-size: 1.2rem; color: #666; }
+    /* Profesyonel Ürün Sayfası Tasarımı */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f9f9f9; color: #1a1a1a; line-height: 1.5; }
+    .page-wrapper { max-width: 1280px; margin: 0 auto; padding: 20px; }
+    
+    /* Üst navigasyon */
+    .nav-back { margin-bottom: 24px; }
+    .nav-back a { color: #1a1a1a; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; transition: opacity 0.2s; }
+    .nav-back a:hover { opacity: 0.7; }
+    
+    /* Ana ürün kartı */
+    .product-main { background: #fff; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.05); padding: 40px; display: flex; flex-wrap: wrap; gap: 40px; margin-bottom: 40px; }
+    .product-gallery { flex: 1 1 300px; display: flex; justify-content: center; align-items: center; }
+    .product-gallery img { max-width: 100%; max-height: 500px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .product-details { flex: 1 1 400px; }
+    .product-details h1 { font-size: 2rem; font-weight: 700; margin-bottom: 12px; line-height: 1.2; }
+    .product-author { font-size: 1.1rem; color: #555; margin-bottom: 16px; }
+    .product-meta { display: flex; flex-wrap: wrap; gap: 16px 24px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+    .meta-item { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #666; }
+    .popularity-badge { background: #f0f7ff; color: #0066cc; padding: 8px 16px; border-radius: 30px; font-weight: 500; display: inline-block; margin-bottom: 20px; }
+    .product-description { margin-bottom: 24px; color: #333; }
+    .product-description h3 { font-size: 1.2rem; margin-bottom: 12px; font-weight: 600; }
+    .product-description p { margin-bottom: 12px; }
+    .price-section { margin-bottom: 24px; display: flex; align-items: baseline; gap: 12px; }
+    .current-price { font-size: 2.5rem; font-weight: 700; color: #1a1a1a; }
+    .btn-purchase { background: #1a1a1a; color: #fff; border: none; padding: 16px 32px; font-size: 1.1rem; font-weight: 600; border-radius: 8px; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s; text-align: center; min-width: 200px; }
+    .btn-purchase:hover { background: #333; }
+    .secure-checkout { display: flex; align-items: center; gap: 16px; margin-top: 16px; font-size: 0.85rem; color: #666; }
+    
+    /* You May Also Like Bölümü */
+    .recommendations { margin-top: 40px; }
+    .recommendations h2 { font-size: 1.8rem; margin-bottom: 24px; font-weight: 600; }
+    .book-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .book-card { background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; }
+    .book-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.08); }
+    .book-card-img { aspect-ratio: 3/4; background: #fafafa; display: flex; align-items: center; justify-content: center; padding: 12px; }
+    .book-card-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .book-card-info { padding: 12px; flex-grow: 1; display: flex; flex-direction: column; }
+    .book-card-title { font-size: 0.85rem; font-weight: 500; line-height: 1.3; margin-bottom: 8px; flex-grow: 1; }
+    .book-card-price { font-weight: 600; color: #1a1a1a; margin-bottom: 8px; }
+    .book-card-btn { background: #1a1a1a; color: #fff; text-align: center; padding: 8px; border-radius: 6px; font-size: 0.8rem; font-weight: 500; text-decoration: none; transition: background 0.2s; }
+    .book-card-btn:hover { background: #333; }
+    
+    /* Hata mesajları */
+    .error-message { text-align: center; padding: 60px 20px; background: #fff; border-radius: 16px; }
+    .error-message a { color: #1a1a1a; font-weight: 600; }
+    
     @media (max-width: 768px) {
-      .product-detail { flex-direction: column; }
+      .product-main { padding: 24px; }
+      .product-details h1 { font-size: 1.6rem; }
+      .book-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <a href="index.html" class="back-link">← Back to Home</a>
-    <div id="content"></div>
+  <div class="page-wrapper">
+    <!-- Geri Dön -->
+    <div class="nav-back">
+      <a href="index.html">← Back to Books</a>
+    </div>
+
+    <!-- Ana İçerik (JavaScript ile doldurulacak) -->
+    <div id="productContent"></div>
+
+    <!-- You May Also Like (JavaScript ile doldurulacak) -->
+    <div id="recommendationsContent" class="recommendations"></div>
   </div>
 
-  <!-- Ürün verilerini içeren dosya -->
+  <!-- Ürün Verileri -->
   <script src="js/products.js"></script>
+  
   <script>
     (function() {
-      const content = document.getElementById('content');
+      const productContainer = document.getElementById('productContent');
+      const recContainer = document.getElementById('recommendationsContent');
       const pageTitle = document.getElementById('pageTitle');
       
-      // PRODUCTS dizisi yüklendi mi?
+      // Veri kontrolü
       if (typeof PRODUCTS === 'undefined') {
-        content.innerHTML = '<div class="error">❌ Error: Product data not found. Please check js/products.js file.</div>';
+        productContainer.innerHTML = '<div class="error-message">❌ Product data not found.</div>';
         return;
       }
 
-      // URL'den id parametresini al
+      // URL'den ID al
       const params = new URLSearchParams(window.location.search);
       const id = parseInt(params.get('id'));
       
       if (!id || isNaN(id)) {
-        content.innerHTML = '<div class="error">📖 No book selected. <a href="index.html">Browse all books</a>.</div>';
+        productContainer.innerHTML = '<div class="error-message">📖 No book selected. <a href="index.html">Browse all books</a>.</div>';
         return;
       }
 
@@ -59,35 +104,101 @@
       const book = PRODUCTS.find(p => p.id === id);
       
       if (!book) {
-        content.innerHTML = '<div class="error">🔍 Book not found. <a href="index.html">Browse all books</a>.</div>';
+        productContainer.innerHTML = '<div class="error-message">🔍 Book not found. <a href="index.html">Browse all books</a>.</div>';
         return;
       }
 
-      // Sayfa başlığını güncelle (SEO)
-      pageTitle.textContent = book.title + ' | BookAndRead';
+      // Sayfa başlığı
+      pageTitle.textContent = `${book.title} | BookAndRead`;
       
-      // Popülerlik göstergesi (tutarlı rastgele sayı)
+      // Popülerlik
       const hotness = 40 + (book.id % 50);
       
-      // HTML içeriğini oluştur
-      const html = `
-        <div class="product-detail">
-          <div class="product-image">
-            <img src="images/books/${book.image}" alt="${book.title}" onerror="this.src='https://placehold.co/400x500?text=Cover'">
+      // Ana ürün HTML'i
+      const productHTML = `
+        <div class="product-main">
+          <div class="product-gallery">
+            <img src="images/books/${book.image}" alt="${book.title}" onerror="this.src='https://placehold.co/600x800?text=Cover'">
           </div>
-          <div class="product-info">
+          <div class="product-details">
             <h1>${book.title}</h1>
-            <div class="author">by ${book.author}</div>
-            <div class="badge">🔥 <strong>${hotness}</strong> readers accessed this book recently.</div>
-            <div class="description">${book.description}</div>
-            <div class="price">$${book.price}</div>
-            <a href="${book.fourthwall_url}" target="_blank" class="btn">Get Book →</a>
-            <div style="margin-top: 20px;"><a href="index.html" class="back-link">← Continue Shopping</a></div>
+            <div class="product-author">by ${book.author}</div>
+            <div class="popularity-badge">🔥 ${hotness} people accessed this book recently</div>
+            <div class="product-meta">
+              <div class="meta-item">📚 Category: ${book.category}</div>
+              <div class="meta-item">📅 Year: ${book.year || 'N/A'}</div>
+              <div class="meta-item">🔖 ISBN: ${book.isbn || 'N/A'}</div>
+            </div>
+            <div class="product-description">
+              <h3>About this book</h3>
+              <p>${book.description}</p>
+            </div>
+            <div class="price-section">
+              <span class="current-price">$${book.price}</span>
+              <span style="color:#666;">Instant digital access</span>
+            </div>
+            <a href="${book.fourthwall_url}" target="_blank" class="btn-purchase">Get Book →</a>
+            <div class="secure-checkout">
+              <span>🔒 Secure checkout</span>
+              <span>💳 Instant access after purchase</span>
+            </div>
           </div>
         </div>
       `;
       
-      content.innerHTML = html;
+      productContainer.innerHTML = productHTML;
+      
+      // ==================== YOU MAY ALSO LIKE ====================
+      // Aynı kategoriden diğer kitapları bul (kendisi hariç)
+      const sameCategory = PRODUCTS.filter(p => p.category === book.category && p.id !== book.id);
+      
+      // Rastgele 4 kitap seç (veya hepsini al)
+      const shuffled = sameCategory.sort(() => 0.5 - Math.random());
+      const recommended = shuffled.slice(0, 4);
+      
+      if (recommended.length > 0) {
+        let recHTML = '<h2>You May Also Like</h2><div class="book-grid">';
+        
+        recommended.forEach(rec => {
+          recHTML += `
+            <a href="product.html?id=${rec.id}" class="book-card">
+              <div class="book-card-img">
+                <img src="images/books/${rec.image}" alt="${rec.title}" loading="lazy" onerror="this.src='https://placehold.co/400x500?text=Cover'">
+              </div>
+              <div class="book-card-info">
+                <div class="book-card-title">${rec.title}</div>
+                <div class="book-card-price">$${rec.price}</div>
+                <span class="book-card-btn">View Details →</span>
+              </div>
+            </a>
+          `;
+        });
+        
+        recHTML += '</div>';
+        recContainer.innerHTML = recHTML;
+      } else {
+        // Aynı kategoride başka kitap yoksa, rastgele kitaplar göster
+        const otherBooks = PRODUCTS.filter(p => p.id !== book.id).sort(() => 0.5 - Math.random()).slice(0, 4);
+        if (otherBooks.length > 0) {
+          let recHTML = '<h2>You May Also Like</h2><div class="book-grid">';
+          otherBooks.forEach(rec => {
+            recHTML += `
+              <a href="product.html?id=${rec.id}" class="book-card">
+                <div class="book-card-img">
+                  <img src="images/books/${rec.image}" alt="${rec.title}" loading="lazy" onerror="this.src='https://placehold.co/400x500?text=Cover'">
+                </div>
+                <div class="book-card-info">
+                  <div class="book-card-title">${rec.title}</div>
+                  <div class="book-card-price">$${rec.price}</div>
+                  <span class="book-card-btn">View Details →</span>
+                </div>
+              </a>
+            `;
+          });
+          recHTML += '</div>';
+          recContainer.innerHTML = recHTML;
+        }
+      }
     })();
   </script>
 </body>
