@@ -4,100 +4,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BookAndRead | Digital Study Resources 2026 – Medical, Nursing, Test Prep &amp; More</title>
-  <meta name="description" content="BookAndRead offers digital study resources for Medical &amp; Nursing (Netter, Harrison's, Guyton), Test Prep (Barron's, ACT, PMP), Engineering, Business, Psychology, Academic Writing, and popular novels. Instant access after purchase.">
+  <meta name="description" content="BookAndRead offers digital study resources for Medical &amp; Nursing, Test Prep, Engineering, Business, Psychology, and more. Instant access after purchase.">
   
+  <!-- Orijinal CSS (sizin verdiğiniz) -->
   <style>
-    /* ==================== 您的原始 CSS（一字未改） ==================== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #fff; color: #000; }
-    .top-nav { max-width: 1280px; margin: 20px auto 0; padding: 0 16px; display: flex; justify-content: flex-start; gap: 24px; border-bottom: 1px solid #e0e0e0; padding-bottom: 12px; flex-wrap: wrap; }
-    .nav-item { position: relative; font-weight: 600; font-size: 1rem; cursor: pointer; color: #000; text-decoration: none; background: transparent; border: none; padding: 4px 0; }
-    .nav-item.blog-link { text-decoration: none; color: #000; }
-    .nav-item.blog-link:hover { opacity: 0.6; }
-    .dropdown-menu { position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #e0e0e0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); min-width: 220px; z-index: 100; display: none; padding: 12px 0; margin-top: 8px; }
-    .dropdown-menu.show { display: block; }
-    .dropdown-menu a { display: block; padding: 8px 20px; text-decoration: none; color: #000; font-size: 0.85rem; font-weight: 500; border-bottom: 1px solid #f0f0f0; transition: background 0.2s; }
-    .dropdown-menu a:last-child { border-bottom: none; }
-    .dropdown-menu a:hover { background: #f5f5f5; }
-    .see-all-link { font-weight: 700; background: #f9f9f9; margin-top: 4px; }
-    .custom-slider-wrapper { position: relative; max-width: 1280px; margin: 30px auto 0; overflow: hidden; background: #f5f5f5; border: 1px solid #e5e5e5; touch-action: pan-y pinch-zoom; }
-    .custom-slides { display: flex; transition: transform 0.5s ease; }
-    .custom-slide { min-width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 40px 56px; gap: 40px; background: #ffffff; flex-wrap: wrap; }
-    .custom-slide-content { flex: 1; }
-    .custom-slide-content h2 { font-size: 2rem; font-weight: 600; margin-bottom: 1rem; color: #000; }
-    .custom-slide-content p { color: #3a3a3a; margin-bottom: 2rem; }
-    .custom-slide-btn { background: #000; color: #fff; padding: 12px 28px; text-decoration: none; font-weight: 500; display: inline-block; transition: background 0.2s; }
-    .custom-slide-btn:hover { background: #333; }
-    .custom-slide-image { flex: 0.4; text-align: center; }
-    .custom-slide-image img { max-width: 240px; max-height: 280px; object-fit: contain; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .custom-slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: #000000; color: white; border: none; width: 44px; height: 44px; cursor: pointer; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; z-index: 10; border-radius: 0; }
-    .custom-slider-wrapper:hover .custom-slider-btn { opacity: 0.8; }
-    .custom-slider-btn:hover { opacity: 1 !important; }
-    .custom-slider-left { left: 20px; } .custom-slider-right { right: 20px; }
-    .slider-controls { display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 16px; margin-bottom: 20px; }
-    .slider-indicators { display: flex; gap: 10px; }
-    .indicator-dot { width: 10px; height: 10px; background-color: #ccc; border-radius: 50%; cursor: pointer; transition: background 0.2s; }
-    .indicator-dot.active { background-color: #000; }
-    .play-pause-btn { background: transparent; border: none; font-size: 1.2rem; cursor: pointer; color: #000; padding: 0; margin: 0; display: inline-flex; align-items: center; justify-content: center; }
-    .category-section { margin: 48px 0 40px; }
-    .category-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; flex-wrap: wrap; gap: 8px; }
-    .category-head h2 { font-size: 1.4rem; font-weight: 700; color: #000; text-transform: lowercase; }
-    .category-head h2::first-letter { text-transform: uppercase; }
-    .see-all-btn { background: #000; color: white; padding: 4px 12px; font-size: 0.7rem; font-weight: 500; text-decoration: none; white-space: nowrap; display: inline-block; flex-shrink: 0; }
-    .carousel-wrapper { position: relative; display: flex; align-items: center; justify-content: center; }
-    .carousel-container { overflow: hidden; width: 100%; }
-    .carousel-track { display: flex; transition: transform 0.4s ease; gap: 16px; }
-    .product-card { flex: 0 0 calc(20% - 13px); min-width: calc(20% - 13px); background: transparent; border: none; box-shadow: none; transition: transform 0.2s; display: flex; flex-direction: column; text-decoration: none; color: inherit; }
-    .product-card:hover { transform: translateY(-4px); }
-    .product-img { aspect-ratio: 3/4; background: #fafafa; display: flex; align-items: center; justify-content: center; padding: 0; overflow: hidden; }
-    .product-img img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.2s; }
-    .product-card:hover .product-img img { transform: scale(1.03); }
-    .product-info { padding: 10px 0 6px; background: transparent; border: none; text-align: left; }
-    .product-title { font-size: 0.75rem; font-weight: 500; line-height: 1.3; color: #1a1a1a; margin-bottom: 4px; white-space: normal; }
-    .product-price { font-size: 0.8rem; font-weight: 600; color: #000; margin: 4px 0 0; }
-    .btn-view { background: #000; color: white; text-align: center; padding: 5px 10px; font-weight: 500; font-size: 0.65rem; text-decoration: none; display: inline-block; margin-top: 6px; }
-    .carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: transparent; border: none; font-size: 2rem; cursor: pointer; color: #000; padding: 0 8px; z-index: 5; opacity: 0.6; transition: opacity 0.2s; }
-    .carousel-arrow-left { left: -30px; } .carousel-arrow-right { right: -30px; }
-    .coupon-banner { background: #000; color: #fff; text-align: center; padding: 8px; font-size: 0.9rem; position: sticky; top: 0; z-index: 50; }
-    .coupon-code { background: #333; padding: 2px 8px; border-radius: 4px; margin: 0 4px; cursor: pointer; }
-    @media (max-width: 1024px) and (min-width: 769px) { .product-card { flex: 0 0 calc(20% - 13px); min-width: calc(20% - 13px); } }
-    @media (max-width: 768px) {
-      .top-nav { gap: 16px; justify-content: center; padding: 0 12px 12px 12px; }
-      .nav-item { font-size: 0.85rem; }
-      .dropdown-menu { min-width: 180px; left: -20px; }
-      .custom-slider-btn { display: none; }
-      .custom-slide { padding: 20px 16px; gap: 20px; flex-direction: row; text-align: left; }
-      .custom-slide-content h2 { font-size: 1.2rem; margin-bottom: 0.5rem; }
-      .custom-slide-content p { font-size: 0.8rem; margin-bottom: 1rem; }
-      .custom-slide-btn { padding: 6px 16px; font-size: 0.75rem; }
-      .custom-slide-image { flex: 0.3; }
-      .custom-slide-image img { max-width: 100px; max-height: 140px; }
-      .category-section { margin: 28px 0 24px; }
-      .category-head h2 { font-size: 1rem; letter-spacing: -0.3px; }
-      .see-all-btn { padding: 2px 8px; font-size: 0.55rem; }
-      .carousel-container { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-      .carousel-container::-webkit-scrollbar { display: none; }
-      .carousel-track { transition: none; gap: 12px; }
-      .product-card { flex: 0 0 calc(45% - 8px); min-width: calc(45% - 8px); scroll-snap-align: start; }
-      .carousel-arrow { display: none; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background:#fff; color:#000; }
+    .top-nav { max-width:1280px; margin:20px auto 0; padding:0 16px; display:flex; gap:24px; border-bottom:1px solid #e0e0e0; padding-bottom:12px; flex-wrap:wrap; }
+    .nav-item { font-weight:600; cursor:pointer; position:relative; font-size:1rem; padding:4px 0; }
+    .dropdown-menu { position:absolute; top:100%; left:0; background:#fff; border:1px solid #e0e0e0; box-shadow:0 4px 12px rgba(0,0,0,0.1); min-width:220px; z-index:100; display:none; padding:12px 0; margin-top:8px; }
+    .dropdown-menu.show { display:block; }
+    .dropdown-menu a { display:block; padding:8px 20px; text-decoration:none; color:#000; font-size:0.85rem; border-bottom:1px solid #f0f0f0; }
+    .dropdown-menu a:hover { background:#f5f5f5; }
+    .custom-slider-wrapper { position:relative; max-width:1280px; margin:30px auto 0; overflow:hidden; background:#f5f5f5; border:1px solid #e5e5e5; }
+    .custom-slides { display:flex; transition:transform 0.5s; }
+    .custom-slide { min-width:100%; display:flex; align-items:center; padding:40px 56px; gap:40px; background:#fff; flex-wrap:wrap; }
+    .custom-slide-content { flex:1; }
+    .custom-slide-content h2 { font-size:2rem; margin-bottom:1rem; }
+    .custom-slide-btn { background:#000; color:#fff; padding:12px 28px; text-decoration:none; display:inline-block; }
+    .custom-slider-btn { position:absolute; top:50%; transform:translateY(-50%); background:#000; color:#fff; border:none; width:44px; height:44px; font-size:1.8rem; cursor:pointer; opacity:0; transition:0.2s; z-index:10; }
+    .custom-slider-wrapper:hover .custom-slider-btn { opacity:0.8; }
+    .custom-slider-left { left:20px; } .custom-slider-right { right:20px; }
+    .slider-controls { display:flex; justify-content:center; gap:16px; margin:16px 0; }
+    .slider-indicators { display:flex; gap:10px; }
+    .indicator-dot { width:10px; height:10px; background:#ccc; border-radius:50%; cursor:pointer; }
+    .indicator-dot.active { background:#000; }
+    .play-pause-btn { background:transparent; border:none; font-size:1.2rem; cursor:pointer; }
+    .category-section { max-width:1280px; margin:48px auto; padding:0 16px; }
+    .category-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:20px; }
+    .category-head h2 { font-size:1.4rem; }
+    .see-all-btn { background:#000; color:#fff; padding:4px 12px; font-size:0.7rem; text-decoration:none; }
+    .carousel-container { overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+    .carousel-container::-webkit-scrollbar { display:none; }
+    .carousel-track { display:flex; gap:16px; }
+    .product-card { flex:0 0 calc(20% - 13px); min-width:180px; text-decoration:none; color:inherit; background:#fff; border:1px solid #eee; transition:0.2s; scroll-snap-align:start; }
+    .product-card:hover { transform:translateY(-4px); box-shadow:0 6px 12px rgba(0,0,0,0.05); }
+    .product-img { aspect-ratio:3/4; background:#fafafa; display:flex; align-items:center; justify-content:center; }
+    .product-img img { max-width:100%; max-height:100%; object-fit:contain; }
+    .product-info { padding:10px; }
+    .product-title { font-size:0.75rem; font-weight:500; margin-bottom:4px; }
+    .btn-view { background:#000; color:#fff; padding:5px 10px; font-size:0.65rem; display:inline-block; margin-top:6px; text-decoration:none; }
+    .hamburger { display:none; }
+    @media (max-width:768px) {
+      .hamburger { display:block; position:fixed; top:16px; right:16px; z-index:200; background:#000; color:#fff; border:none; width:44px; height:44px; font-size:24px; border-radius:4px; }
+      .top-nav { display:none; position:fixed; top:70px; left:0; right:0; background:#fff; z-index:150; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,0.1); flex-direction:column; }
+      .top-nav.show { display:flex; }
+      .custom-slider-btn { display:none; }
+      .custom-slide { padding:20px 16px; }
+      .product-card { flex:0 0 calc(45% - 8px); min-width:140px; }
     }
+    .coupon-banner { background:#000; color:#fff; text-align:center; padding:8px; position:sticky; top:0; z-index:50; }
+    .coupon-code { background:#333; padding:2px 8px; border-radius:4px; margin:0 4px; cursor:pointer; }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- Kupon Banner (Gizli) -->
+<!-- Kupon Banner (gecikmeli, botlardan gizli) -->
 <div id="coupon-banner-container"></div>
 <template id="coupon-banner-template">
   <div class="coupon-banner">
     🎁 <strong>First purchase special:</strong> Use code 
-    <span class="coupon-code" onclick="navigator.clipboard?.writeText('WELCOME10')">WELCOME10</span> 
-    for 10% off.
+    <span class="coupon-code" onclick="navigator.clipboard?.writeText('WELCOME10')">WELCOME10</span> for 10% off.
   </div>
 </template>
 
-<!-- YATAY MENÜ -->
-<div class="top-nav">
+<!-- Mobil Hamburger Buton -->
+<button class="hamburger" id="hamburgerBtn">☰</button>
+
+<!-- Yatay Menü -->
+<div class="top-nav" id="topNav">
   <div class="nav-item" id="categoriesNav">
     <span>Categories ▼</span>
     <div class="dropdown-menu" id="categoriesDropdown"></div>
@@ -106,13 +82,13 @@
     <span>Authors ▼</span>
     <div class="dropdown-menu" id="authorsDropdown">
       <a href="#">Frank H. Netter</a><a href="#">John E. Hall</a><a href="#">J. Larry Jameson</a>
-      <a href="#">Tao Le</a><a href="#">Patricia A. Potter</a><a href="#" class="see-all-link">See all →</a>
+      <a href="#">Tao Le</a><a href="#">Patricia A. Potter</a><a href="#">See all →</a>
     </div>
   </div>
-  <a href="#" class="nav-item blog-link" id="blogLink">Blog</a>
+  <a href="#" class="nav-item">Blog</a>
 </div>
 
-<!-- SLIDER -->
+<!-- Slider -->
 <div class="custom-slider-wrapper" id="customSlider">
   <div class="custom-slides" id="customSlides"></div>
   <button class="custom-slider-btn custom-slider-left" id="customPrev">←</button>
@@ -123,187 +99,139 @@
   <button class="play-pause-btn" id="playPauseBtn">⏸</button>
 </div>
 
-<!-- KATEGORİ VE ÜRÜN CAROUSEL'LERİ -->
+<!-- Kategoriler ve Ürün Carousel'leri -->
 <div id="categoriesContainer" style="max-width:1280px; margin:0 auto; padding:0 16px;"></div>
 
 <script src="js/products.js"></script>
-<script src="category-links.js"></script>
 <script>
-  (function(){
-    // ---------- 1. 下拉菜单 (您的原始逻辑) ----------
-    let closeTimeout = null;
-    function closeAllDropdowns() { document.querySelectorAll('.dropdown-menu.show').forEach(m => m.classList.remove('show')); }
-    function openDropdown(d) { if(closeTimeout) clearTimeout(closeTimeout); closeTimeout = null; closeAllDropdowns(); d.classList.add('show'); }
-    function scheduleClose(d) { if(closeTimeout) clearTimeout(closeTimeout); closeTimeout = setTimeout(() => { d.classList.remove('show'); closeTimeout = null; }, 300); }
-    
-    const categoriesItem = document.getElementById('categoriesNav');
-    const authorsItem = document.getElementById('authorsNav');
-    const categoriesDropdown = document.getElementById('categoriesDropdown');
-    const authorsDropdown = document.getElementById('authorsDropdown');
-    
-    if (window.innerWidth > 768) {
-      categoriesItem.addEventListener('mouseenter', () => openDropdown(categoriesDropdown));
-      categoriesItem.addEventListener('mouseleave', () => scheduleClose(categoriesDropdown));
-      categoriesDropdown.addEventListener('mouseenter', () => { if(closeTimeout) clearTimeout(closeTimeout); });
-      categoriesDropdown.addEventListener('mouseleave', () => scheduleClose(categoriesDropdown));
-      authorsItem.addEventListener('mouseenter', () => openDropdown(authorsDropdown));
-      authorsItem.addEventListener('mouseleave', () => scheduleClose(authorsDropdown));
-      authorsDropdown.addEventListener('mouseenter', () => { if(closeTimeout) clearTimeout(closeTimeout); });
-      authorsDropdown.addEventListener('mouseleave', () => scheduleClose(authorsDropdown));
-    } else {
-      document.querySelectorAll('.nav-item').forEach(item => {
-        const dd = item.querySelector('.dropdown-menu');
-        if(dd) item.addEventListener('click', (e) => { e.stopPropagation(); const isOpen = dd.classList.contains('show'); closeAllDropdowns(); if(!isOpen) dd.classList.add('show'); });
-      });
-      document.addEventListener('click', closeAllDropdowns);
-    }
-    document.querySelectorAll('#authorsDropdown a').forEach(link => link.addEventListener('click', (e) => { e.preventDefault(); closeAllDropdowns(); }));
-    document.getElementById('blogLink').addEventListener('click', (e) => { e.preventDefault(); window.location.href = 'blog-page.html'; });
+  // ==================== SLIDER ====================
+  const slidesData = [
+    { title:"Medical & Nursing Resources", desc:"Access essential textbooks", image:"https://placehold.co/600x400/1a1a1a/fff?text=Medical+Nursing", url:"https://bookandread.store/collections/medical-nursing" },
+    { title:"Test Prep & AP Guides", desc:"Premium study materials", image:"https://placehold.co/600x400/2c3e50/fff?text=Test+Prep", url:"https://bookandread.store/collections/test-prep" },
+    { title:"Engineering & Math", desc:"Core STEM textbooks", image:"https://placehold.co/600x400/1b4332/fff?text=Engineering", url:"https://bookandread.store/collections/engineering-mathematics" }
+  ];
+  let currentSlide=0, slideInterval, isPlaying=true;
+  function renderSlides() {
+    document.getElementById('customSlides').innerHTML = slidesData.map(s => `
+      <div class="custom-slide">
+        <div class="custom-slide-content"><h2>${s.title}</h2><p>${s.desc}</p><a href="${s.url}" class="custom-slide-btn">Explore →</a></div>
+        <div class="custom-slide-image"><img src="${s.image}" alt="${s.title}"></div>
+      </div>
+    `).join('');
+    updateIndicators();
+  }
+  function updateIndicators() {
+    document.getElementById('sliderIndicators').innerHTML = slidesData.map((_,i) => `<span class="indicator-dot ${i===currentSlide?'active':''}" data-index="${i}"></span>`).join('');
+    document.querySelectorAll('.indicator-dot').forEach(d => d.addEventListener('click', e => {
+      currentSlide = parseInt(e.target.dataset.index); updateSlide(); resetTimer();
+    }));
+  }
+  function updateSlide() { document.getElementById('customSlides').style.transform = `translateX(-${currentSlide*100}%)`; updateIndicators(); }
+  function nextSlide() { currentSlide = (currentSlide+1)%slidesData.length; updateSlide(); }
+  function prevSlide() { currentSlide = (currentSlide-1+slidesData.length)%slidesData.length; updateSlide(); }
+  function startTimer() { slideInterval = setInterval(nextSlide, 5000); isPlaying=true; document.getElementById('playPauseBtn').textContent='⏸'; }
+  function stopTimer() { clearInterval(slideInterval); isPlaying=false; document.getElementById('playPauseBtn').textContent='▶'; }
+  function resetTimer() { if(isPlaying) { stopTimer(); startTimer(); } }
+  document.getElementById('customNext').addEventListener('click', ()=>{ nextSlide(); resetTimer(); });
+  document.getElementById('customPrev').addEventListener('click', ()=>{ prevSlide(); resetTimer(); });
+  document.getElementById('playPauseBtn').addEventListener('click', ()=> isPlaying ? stopTimer() : startTimer());
+  renderSlides(); startTimer();
 
-    // ---------- 2. Slider (您的原始代码，微调了图片和链接) ----------
-    const slidesData = [
-      { title: "Medical & Nursing Resources", desc: "Access essential textbooks for healthcare professionals", image: "https://placehold.co/600x400/1a1a1a/fff?text=Medical+Nursing", url: "https://bookandread.store/collections/medical-nursing" },
-      { title: "Test Prep & AP Guides 2026", desc: "Prepare for success with premium study materials", image: "https://placehold.co/600x400/2c3e50/fff?text=Test+Prep", url: "https://bookandread.store/collections/test-prep" },
-      { title: "Engineering & Mathematics", desc: "Core textbooks for STEM students", image: "https://placehold.co/600x400/1b4332/fff?text=Engineering", url: "https://bookandread.store/collections/engineering-mathematics" }
-    ];
-    let currentSlide = 0, autoInterval, isPlaying = true;
-    const slidesContainer = document.getElementById('customSlides');
-    function renderSlides() {
-      slidesContainer.innerHTML = slidesData.map(s => `
-        <div class="custom-slide"><div class="custom-slide-content"><h2>${s.title}</h2><p>${s.desc}</p><a href="${s.url}" class="custom-slide-btn">Explore Collection →</a></div><div class="custom-slide-image"><img src="${s.image}" alt="${s.title}"></div></div>
-      `).join('');
-      updateIndicators();
-    }
-    function updateIndicators() {
-      const ind = document.getElementById('sliderIndicators');
-      ind.innerHTML = slidesData.map((_, i) => `<span class="indicator-dot ${i===currentSlide?'active':''}" data-index="${i}"></span>`).join('');
-      ind.querySelectorAll('.indicator-dot').forEach(d => d.addEventListener('click', e => {
-        currentSlide = parseInt(e.target.dataset.index); updateSlide(); resetTimer();
-      }));
-    }
-    function updateSlide() { slidesContainer.style.transform = `translateX(-${currentSlide*100}%)`; updateIndicators(); }
-    function nextSlide() { currentSlide = (currentSlide+1)%slidesData.length; updateSlide(); }
-    function prevSlide() { currentSlide = (currentSlide-1+slidesData.length)%slidesData.length; updateSlide(); }
-    function startTimer() { autoInterval = setInterval(nextSlide, 5000); isPlaying = true; document.getElementById('playPauseBtn').textContent = '⏸'; }
-    function stopTimer() { clearInterval(autoInterval); isPlaying = false; document.getElementById('playPauseBtn').textContent = '▶'; }
-    function resetTimer() { if(isPlaying) { stopTimer(); startTimer(); } }
-    document.getElementById('customNext').addEventListener('click', () => { nextSlide(); resetTimer(); });
-    document.getElementById('customPrev').addEventListener('click', () => { prevSlide(); resetTimer(); });
-    document.getElementById('playPauseBtn').addEventListener('click', () => isPlaying ? stopTimer() : startTimer());
-    renderSlides(); startTimer();
-
-    // ---------- 3. 从 PRODUCTS 加载真实数据并构建分类 Carousel ----------
-    const products = window.PRODUCTS || [];
-    const categories = [...new Set(products.map(p => p.category).filter(Boolean))].sort();
-    
-    // 分类下拉菜单填充（链接指向 Fourthwall 集合）
-    const dropdown = document.getElementById('categoriesDropdown');
-    const collectionMap = (typeof categoryLinks !== 'undefined') ? categoryLinks : {
-      "Best Seller": "https://bookandread.store/collections/best-seller",
-      "New Arrivals": "https://bookandread.store/collections/new-arrivals",
-      "Medical & Nursing": "https://bookandread.store/collections/medical-nursing",
-      "Textbooks": "https://bookandread.store/collections/textbooks",
-      "Engineering & Mathematics": "https://bookandread.store/collections/engineering-mathematics",
-      "Business & Career": "https://bookandread.store/collections/business-career",
-      "Bestseller Novels": "https://bookandread.store/collections/bestseller-novels",
-      "Student Favorites": "https://bookandread.store/collections/student-favorites",
-      "Psychology & Counseling": "https://bookandread.store/collections/psychology-counseling",
-      "History & Humanities": "https://bookandread.store/collections/history-humanities",
-      "Natural Sciences": "https://bookandread.store/collections/natural-sciences",
-      "Software & Computer Science": "https://bookandread.store/collections/software-computer-science",
-      "Education": "https://bookandread.store/collections/education",
-      "Herbal & Alternative Medicine": "https://bookandread.store/collections/herbal-alternative-medicine"
-    };
-    
-    dropdown.innerHTML = categories.map(cat => {
+  // ==================== KATEGORİ VE ÜRÜNLER ====================
+  const products = typeof PRODUCTS !== 'undefined' ? PRODUCTS : [];
+  const categories = [...new Set(products.map(p => p.category))].filter(Boolean).sort();
+  
+  // Dropdown menüyü doldur
+  const dropdown = document.getElementById('categoriesDropdown');
+  dropdown.innerHTML = categories.map(cat => {
+    const slug = cat.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '');
+    return `<a href="#" data-category="${cat}" data-slug="${slug}">${cat}</a>`;
+  }).join('');
+  
+  // Koleksiyon linkleri
+  const collectionMap = {
+    'medical-nursing': 'https://bookandread.store/collections/medical-nursing',
+    'natural-sciences': 'https://bookandread.store/collections/natural-sciences',
+    'software-computer-science': 'https://bookandread.store/collections/software-computer-science',
+    'psychology-counseling': 'https://bookandread.store/collections/psychology-counseling',
+    'engineering-mathematics': 'https://bookandread.store/collections/engineering-mathematics',
+    'business-career': 'https://bookandread.store/collections/business-career',
+    'education': 'https://bookandread.store/collections/education',
+    'herbal-alternative-medicine': 'https://bookandread.store/collections/herbal-alternative-medicine',
+    'bestseller-novels': 'https://bookandread.store/collections/bestseller-novels',
+    'history-humanities': 'https://bookandread.store/collections/history-humanities',
+    'textbooks': 'https://bookandread.store/collections/textbooks',
+    'best-seller': 'https://bookandread.store/collections/best-seller'
+  };
+  
+  // Dropdown tıklama
+  dropdown.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const cat = link.dataset.category;
       const slug = cat.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '');
-      return `<a href="#" data-category="${cat}">${cat}</a>`;
-    }).join('');
-    
-    dropdown.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const cat = link.dataset.category;
-        if (collectionMap[cat]) window.location.href = collectionMap[cat];
-        closeAllDropdowns();
-      });
+      if (collectionMap[slug]) window.location.href = collectionMap[slug];
     });
-
-    // 构建分类区块和产品卡片
-    const container = document.getElementById('categoriesContainer');
-    container.innerHTML = '';
-    categories.forEach(cat => {
-      const catProducts = products.filter(p => p.category === cat);
-      if (catProducts.length === 0) return;
-      
-      const section = document.createElement('section');
-      section.className = 'category-section';
-      section.id = 'category-' + cat.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '');
-      
-      const headHtml = `
-        <div class="category-head">
-          <h2>${cat}</h2>
-          <a href="${collectionMap[cat] || '#'}" class="see-all-btn">See all →</a>
+  });
+  
+  // Hover menü
+  const catNav = document.getElementById('categoriesNav');
+  const catDrop = document.getElementById('categoriesDropdown');
+  catNav.addEventListener('mouseenter', () => catDrop.classList.add('show'));
+  catNav.addEventListener('mouseleave', () => catDrop.classList.remove('show'));
+  
+  // Mobil hamburger
+  document.getElementById('hamburgerBtn').addEventListener('click', () => {
+    document.getElementById('topNav').classList.toggle('show');
+  });
+  
+  // Kategori bölümlerini oluştur
+  const container = document.getElementById('categoriesContainer');
+  categories.forEach(cat => {
+    const catProducts = products.filter(p => p.category === cat);
+    if (catProducts.length === 0) return;
+    
+    const section = document.createElement('section');
+    section.className = 'category-section';
+    const slug = cat.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '');
+    
+    section.innerHTML = `
+      <div class="category-head">
+        <h2>${cat}</h2>
+        <a href="${collectionMap[slug] || '#'}" class="see-all-btn">See all →</a>
+      </div>
+      <div class="carousel-container">
+        <div class="carousel-track" id="track-${slug}"></div>
+      </div>
+    `;
+    container.appendChild(section);
+    
+    const track = document.getElementById(`track-${slug}`);
+    catProducts.forEach(book => {
+      const card = document.createElement('a');
+      card.className = 'product-card';
+      card.href = `product.html?id=${book.id}`;
+      card.innerHTML = `
+        <div class="product-img">
+          <img src="images/books/${book.image}" alt="${book.title}" loading="lazy" onerror="this.src='https://placehold.co/400x500?text=Cover'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">${book.title}</div>
+          <span class="btn-view">View Details →</span>
         </div>
       `;
-      
-      // 创建 carousel 结构
-      const carouselWrapper = document.createElement('div');
-      carouselWrapper.className = 'carousel-wrapper';
-      const trackId = 'track-' + cat.replace(/\s+/g, '');
-      carouselWrapper.innerHTML = `
-        <button class="carousel-arrow carousel-arrow-left">‹</button>
-        <div class="carousel-container">
-          <div class="carousel-track" id="${trackId}"></div>
-        </div>
-        <button class="carousel-arrow carousel-arrow-right">›</button>
-      `;
-      
-      section.innerHTML = headHtml;
-      section.appendChild(carouselWrapper);
-      container.appendChild(section);
-      
-      const track = document.getElementById(trackId);
-      catProducts.forEach(book => {
-        const card = document.createElement('a');
-        card.className = 'product-card';
-        card.href = `product.html?id=${book.id}`;
-        card.innerHTML = `
-          <div class="product-img">
-            <img src="images/books/${book.image}" alt="${book.title}" loading="lazy" onerror="this.src='https://placehold.co/400x500?text=Cover'">
-          </div>
-          <div class="product-info">
-            <div class="product-title">${book.title}</div>
-            <div class="product-price">$${book.price}</div>
-            <span class="btn-view">View Details →</span>
-          </div>
-        `;
-        track.appendChild(card);
-      });
-      
-      // 桌面端 Carousel 左右箭头功能 (简单实现，直接滚动)
-      const leftBtn = carouselWrapper.querySelector('.carousel-arrow-left');
-      const rightBtn = carouselWrapper.querySelector('.carousel-arrow-right');
-      const containerEl = carouselWrapper.querySelector('.carousel-container');
-      if (leftBtn && rightBtn && containerEl) {
-        leftBtn.addEventListener('click', () => containerEl.scrollBy({ left: -300, behavior: 'smooth' }));
-        rightBtn.addEventListener('click', () => containerEl.scrollBy({ left: 300, behavior: 'smooth' }));
-      }
+      track.appendChild(card);
     });
+  });
 
-    // ---------- 4. 辅助函数 & 优惠券横幅 ----------
-    window.escapeHtml = function(str) {
-      return String(str).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'})[m]);
-    };
-    
-    setTimeout(() => {
-      const template = document.getElementById('coupon-banner-template');
-      if (template) {
-        const clone = template.content.cloneNode(true);
-        document.getElementById('coupon-banner-container').appendChild(clone);
-      }
-    }, 1000);
-  })();
+  // Kupon banner (gecikmeli)
+  setTimeout(() => {
+    const template = document.getElementById('coupon-banner-template');
+    if (template) {
+      const clone = template.content.cloneNode(true);
+      document.getElementById('coupon-banner-container').appendChild(clone);
+    }
+  }, 1000);
 </script>
 </body>
 </html>
