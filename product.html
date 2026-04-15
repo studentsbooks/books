@@ -6,21 +6,25 @@
   <title id="pageTitle">Book Details | BookAndRead</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    body { font-family: 'Inter', sans-serif; margin: 0; background: #fff; }
+    /* Basit ve temiz ürün sayfası stilleri */
+    body { font-family: 'Inter', sans-serif; margin: 0; background: #fff; color: #111; }
     .container { max-width: 1280px; margin: 20px auto; padding: 0 20px; }
-    .back-link { color: #000; text-decoration: none; font-weight: 500; }
-    .product-detail { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 30px; }
+    .back-link { color: #000; text-decoration: none; font-weight: 500; display: inline-block; margin-bottom: 20px; }
+    .product-detail { display: flex; flex-wrap: wrap; gap: 40px; }
     .product-image { flex: 1; min-width: 300px; text-align: center; }
     .product-image img { max-width: 100%; max-height: 500px; object-fit: contain; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
     .product-info { flex: 1; min-width: 300px; }
     .product-info h1 { font-size: 2rem; margin-bottom: 10px; line-height: 1.2; }
-    .author { font-size: 1.1rem; color: #555; margin-bottom: 20px; }
+    .author { font-size: 1.1rem; color: #555; margin-bottom: 15px; }
     .badge { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }
-    .description { line-height: 1.6; margin-bottom: 30px; color: #333; }
+    .description { line-height: 1.6; margin-bottom: 25px; color: #333; }
     .price { font-size: 2rem; font-weight: 700; margin-bottom: 20px; }
     .btn { background: #000; color: #fff; padding: 14px 32px; font-size: 1.2rem; font-weight: 600; text-decoration: none; display: inline-block; border: none; cursor: pointer; }
     .btn:hover { background: #333; }
     .error { text-align: center; padding: 50px; font-size: 1.2rem; color: #666; }
+    @media (max-width: 768px) {
+      .product-detail { flex-direction: column; }
+    }
   </style>
 </head>
 <body>
@@ -29,37 +33,43 @@
     <div id="content"></div>
   </div>
 
+  <!-- Ürün verilerini içeren dosya -->
   <script src="js/products.js"></script>
   <script>
     (function() {
       const content = document.getElementById('content');
       const pageTitle = document.getElementById('pageTitle');
       
+      // PRODUCTS dizisi yüklendi mi?
       if (typeof PRODUCTS === 'undefined') {
-        content.innerHTML = '<div class="error">Error: Product data not found.</div>';
+        content.innerHTML = '<div class="error">❌ Error: Product data not found. Please check js/products.js file.</div>';
         return;
       }
 
+      // URL'den id parametresini al
       const params = new URLSearchParams(window.location.search);
       const id = parseInt(params.get('id'));
       
-      if (!id) {
-        content.innerHTML = '<div class="error">No book selected. <a href="index.html">Browse books</a>.</div>';
+      if (!id || isNaN(id)) {
+        content.innerHTML = '<div class="error">📖 No book selected. <a href="index.html">Browse all books</a>.</div>';
         return;
       }
 
+      // Kitabı bul
       const book = PRODUCTS.find(p => p.id === id);
       
       if (!book) {
-        content.innerHTML = '<div class="error">Book not found. <a href="index.html">Browse all books</a>.</div>';
+        content.innerHTML = '<div class="error">🔍 Book not found. <a href="index.html">Browse all books</a>.</div>';
         return;
       }
 
-      // SEO Başlığını hemen güncelle
+      // Sayfa başlığını güncelle (SEO)
       pageTitle.textContent = book.title + ' | BookAndRead';
       
+      // Popülerlik göstergesi (tutarlı rastgele sayı)
       const hotness = 40 + (book.id % 50);
       
+      // HTML içeriğini oluştur
       const html = `
         <div class="product-detail">
           <div class="product-image">
@@ -68,7 +78,7 @@
           <div class="product-info">
             <h1>${book.title}</h1>
             <div class="author">by ${book.author}</div>
-            <div class="badge">🔥 <strong>${hotness}</strong> readers accessed this book in the last 24 hours.</div>
+            <div class="badge">🔥 <strong>${hotness}</strong> readers accessed this book recently.</div>
             <div class="description">${book.description}</div>
             <div class="price">$${book.price}</div>
             <a href="${book.fourthwall_url}" target="_blank" class="btn">Get Book →</a>
