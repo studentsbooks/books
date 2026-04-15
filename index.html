@@ -7,19 +7,14 @@
   <meta name="description" content="BookAndRead offers digital study resources for Medical &amp; Nursing, Test Prep, Engineering, Business, Psychology, and more. Instant access after purchase.">
   
   <style>
-    /* -------------------- GENEL -------------------- */
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background:#fff; color:#000; }
-    
-    /* -------------------- YATAY MENÜ -------------------- */
     .top-nav { max-width:1280px; margin:20px auto 0; padding:0 16px; display:flex; gap:24px; border-bottom:1px solid #e0e0e0; padding-bottom:12px; flex-wrap:wrap; }
     .nav-item { font-weight:600; cursor:pointer; position:relative; font-size:1rem; padding:4px 0; }
     .dropdown-menu { position:absolute; top:100%; left:0; background:#fff; border:1px solid #e0e0e0; box-shadow:0 4px 12px rgba(0,0,0,0.1); min-width:220px; z-index:100; display:none; padding:12px 0; margin-top:0; }
     .dropdown-menu.show { display:block; }
     .dropdown-menu a { display:block; padding:8px 20px; text-decoration:none; color:#000; font-size:0.85rem; border-bottom:1px solid #f0f0f0; }
     .dropdown-menu a:hover { background:#f5f5f5; }
-    
-    /* -------------------- SLIDER -------------------- */
     .custom-slider-wrapper { position:relative; max-width:1280px; margin:30px auto 0; overflow:hidden; background:#f5f5f5; border:1px solid #e5e5e5; }
     .custom-slides { display:flex; transition:transform 0.5s; }
     .custom-slide { min-width:100%; display:flex; align-items:center; padding:40px 56px; gap:40px; background:#fff; flex-wrap:wrap; }
@@ -34,8 +29,6 @@
     .indicator-dot { width:10px; height:10px; background:#ccc; border-radius:50%; cursor:pointer; }
     .indicator-dot.active { background:#000; }
     .play-pause-btn { background:transparent; border:none; font-size:1.2rem; cursor:pointer; }
-    
-    /* -------------------- KATEGORİ & ÜRÜN CAROUSEL -------------------- */
     .category-section { max-width:1280px; margin:48px auto; padding:0 16px; }
     .category-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:20px; }
     .category-head h2 { font-size:1.4rem; }
@@ -43,59 +36,15 @@
     .carousel-container { overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
     .carousel-container::-webkit-scrollbar { display:none; }
     .carousel-track { display:flex; gap:16px; }
-    
-    /* Kitap kartları - eşit yükseklik ve hizalama */
-    .product-card {
-      flex:0 0 calc(20% - 13px);
-      min-width:180px;
-      text-decoration:none;
-      color:inherit;
-      background:#fff;
-      border:1px solid #eee;
-      transition:transform 0.2s, box-shadow 0.2s;
-      scroll-snap-align:start;
-      display:flex;
-      flex-direction:column;
-    }
+    .product-card { flex:0 0 calc(20% - 13px); min-width:180px; text-decoration:none; color:inherit; background:#fff; border:1px solid #eee; transition:transform 0.2s, box-shadow 0.2s; scroll-snap-align:start; display:flex; flex-direction:column; }
     .product-card:hover { transform:translateY(-4px); box-shadow:0 6px 12px rgba(0,0,0,0.05); }
-    .product-img {
-      aspect-ratio:3/4;
-      background:#fafafa;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:8px;
-      border-bottom:1px solid #f0f0f0;
-    }
+    .product-img { aspect-ratio:3/4; background:#fafafa; display:flex; align-items:center; justify-content:center; padding:8px; border-bottom:1px solid #f0f0f0; }
     .product-img img { max-width:100%; max-height:100%; object-fit:contain; }
-    .product-info {
-      padding:10px;
-      display:flex;
-      flex-direction:column;
-      flex-grow:1;
-    }
-    .product-title {
-      font-size:0.75rem;
-      font-weight:500;
-      line-height:1.3;
-      margin-bottom:8px;
-      flex-grow:1;
-    }
-    .btn-view {
-      background:#000;
-      color:#fff;
-      padding:8px 10px;
-      font-size:0.7rem;
-      text-decoration:none;
-      display:block;
-      text-align:center;
-      margin-top:auto;
-      border:none;
-      cursor:pointer;
-    }
+    .product-info { padding:10px; display:flex; flex-direction:column; flex-grow:1; }
+    .popularity-mini { font-size:0.6rem; color:#0066cc; margin-bottom:4px; }
+    .product-title { font-size:0.75rem; font-weight:500; line-height:1.3; margin-bottom:8px; flex-grow:1; }
+    .btn-view { background:#000; color:#fff; padding:8px 10px; font-size:0.7rem; text-decoration:none; display:block; text-align:center; margin-top:auto; border:none; cursor:pointer; }
     .btn-view:hover { background:#333; }
-    
-    /* -------------------- MOBİL -------------------- */
     .hamburger { display:none; }
     @media (max-width:768px) {
       .hamburger { display:block; position:fixed; top:16px; right:16px; z-index:200; background:#000; color:#fff; border:none; width:44px; height:44px; font-size:24px; border-radius:4px; }
@@ -105,8 +54,6 @@
       .custom-slide { padding:20px 16px; }
       .product-card { flex:0 0 calc(45% - 8px); min-width:140px; }
     }
-    
-    /* -------------------- KUPON BANNER -------------------- */
     .coupon-banner { background:#000; color:#fff; text-align:center; padding:8px; position:sticky; top:0; z-index:50; }
     .coupon-code { background:#333; padding:2px 8px; border-radius:4px; margin:0 4px; cursor:pointer; }
   </style>
@@ -214,7 +161,7 @@
   dropdown.addEventListener('mouseenter', openDropdown);
   dropdown.addEventListener('mouseleave', scheduleClose);
   
-  // Koleksiyon linkleri
+  // Koleksiyon linkleri (Fourthwall)
   const collectionMap = {
     'medical-nursing': 'https://bookandread.store/collections/medical-nursing',
     'natural-sciences': 'https://bookandread.store/collections/natural-sciences',
@@ -254,10 +201,11 @@
     section.className = 'category-section';
     const slug = cat.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '');
     
+    // "See all" butonu GitHub kategori sayfasına yönlendirir
     section.innerHTML = `
       <div class="category-head">
         <h2>${cat}</h2>
-        <a href="${collectionMap[slug] || '#'}" class="see-all-btn">See all →</a>
+        <a href="category.html?cat=${encodeURIComponent(cat)}" class="see-all-btn">See all →</a>
       </div>
       <div class="carousel-container">
         <div class="carousel-track" id="track-${slug}"></div>
@@ -270,11 +218,14 @@
       const card = document.createElement('a');
       card.className = 'product-card';
       card.href = `product.html?id=${book.id}`;
+      // Mini popülerlik rozeti
+      const miniHotness = Math.floor(Math.random() * 41) + 35;
       card.innerHTML = `
         <div class="product-img">
           <img src="images/books/${book.image}" alt="${book.title}" loading="lazy" onerror="this.src='https://placehold.co/400x500?text=Cover'">
         </div>
         <div class="product-info">
+          <div class="popularity-mini">🔥 ${miniHotness} views</div>
           <div class="product-title">${book.title}</div>
           <span class="btn-view">View Details →</span>
         </div>
