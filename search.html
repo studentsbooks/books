@@ -3,56 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Search | BookAndRead</title>
+  <title>Search Results | BookAndRead</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     body { font-family:'Inter', sans-serif; background:#fff; margin:0; }
     .container { max-width:1280px; margin:20px auto; padding:0 20px; }
-    .back-link { color:#000; text-decoration:none; }
-    .search-box { width:100%; padding:16px; font-size:1.2rem; border:1px solid #ddd; border-radius:8px; margin:20px 0; }
+    .back-link { color:#000; text-decoration:none; display:inline-block; margin-bottom:20px; }
+    .search-header { margin-bottom:30px; }
+    .search-header h1 { font-size:1.8rem; margin-bottom:10px; }
     .results-grid { display:grid; grid-template-columns:repeat(5, 1fr); gap:16px; }
-    .product-card { border:1px solid #eee; text-decoration:none; color:inherit; display:flex; flex-direction:column; }
+    .product-card { border:1px solid #eee; text-decoration:none; color:inherit; display:flex; flex-direction:column; transition:0.2s; }
+    .product-card:hover { transform:translateY(-4px); box-shadow:0 6px 12px rgba(0,0,0,0.05); }
     .product-img { aspect-ratio:3/4; background:#fafafa; display:flex; align-items:center; justify-content:center; padding:8px; }
     .product-img img { max-width:100%; max-height:100%; object-fit:contain; }
     .product-info { padding:10px; }
-    .product-title { font-size:0.8rem; margin-bottom:8px; }
-    .btn-view img { max-width:120px; }
+    .product-title { font-size:0.8rem; font-weight:500; margin-bottom:8px; }
+    .btn-view img { max-width:120px; height:auto; }
+    .error-message { text-align:center; padding:40px; color:#666; }
     @media (max-width:768px) { .results-grid { grid-template-columns:repeat(2, 1fr); } }
   </style>
 </head>
 <body>
 <div class="container">
   <a href="index.html" class="back-link">← Back to Home</a>
-  <input type="text" id="searchInput" class="search-box" placeholder="Search by title, author, or ISBN...">
-  <div id="resultsContainer" class="results-grid"></div>
+  <div id="content"></div>
 </div>
 <script src="js/products.js"></script>
 <script>
-  const input = document.getElementById('searchInput');
-  const resultsDiv = document.getElementById('resultsContainer');
-  const products = typeof PRODUCTS !== 'undefined' ? PRODUCTS : [];
-  
-  function renderResults(query) {
-    if (!query) { resultsDiv.innerHTML = ''; return; }
-    const q = query.toLowerCase();
-    const filtered = products.filter(p => 
-      p.title.toLowerCase().includes(q) || 
-      (p.author && p.author.toLowerCase().includes(q)) ||
-      (p.isbn && p.isbn.includes(q))
-    );
-    if (filtered.length === 0) {
-      resultsDiv.innerHTML = '<p>No books found.</p>';
+  (function() {
+    const content = document.getElementById('content');
+    if (typeof PRODUCTS === 'undefined') {
+      content.innerHTML = '<div class="error-message">Error: Product data not found.</div>';
       return;
     }
-    let html = '';
-    filtered.forEach(book => {
-      const priceFormatted = book.price.replace(',', '.');
-      html += `<a href="product.html?id=${book.id}" class="product-card"><div class="product-img"><img src="images/books/${book.image}" loading="lazy" onerror="this.src='https://placehold.co/400x500?text=Cover'"></div><div class="product-info"><div class="product-title">${book.title}</div><div class="btn-view"><img src="images/buttons/btn-${priceFormatted}.png" onerror="this.src='images/buttons/btn-9.99.png'"></div></div></a>`;
-    });
-    resultsDiv.innerHTML = html;
-  }
-  
-  input.addEventListener('input', (e) => renderResults(e.target.value));
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get('q') || '';
+    
+    if (!query) {
+      content.innerHTML = '<div class="error-message">Please enter a search term.</div>';
+      return;
+    }
+    
+    const q = query.toLowerCase().trim();
+    
+    // 1. Tam eşleşme ara (title veya ISBN)
+    const exactMatch = PRODUCTS.find(p => 
+      p.title.toLowerCase() === q || 
+      (p.isbn && p.isbn === q) ||
+      (p.ISBN && p.ISBN === q)
+    );
+    
+    if (exactMatch) {
+      // Doğrudan detay sayfasına yönlendir
+      window.location.href = `product.html?id=${exactMatch.id}`;
+      return;
+    }
+    
+    // 2. Kısmi eşleşme (title, author, isbn, description)
+    const filtered = PRODUCTS.filter(p => 
+      p.title.toLowerCase().includes(q) || 
+      (p.author && p.author.toLowerCase().includes(q)) ||
+      (p.isbn && p.isbn.includes(q)) ||
+      (p.ISBN && p.ISBN.includes(q)) ||
+      (p.description && p.description.toLowerCase().includes(q))
+    );
+    
+    let html = `<div class="search-header"><h1>Search results for "${query}"</h1><p>${filtered.length} books found</p></div>`;
+    
+    if (filtered.length === 0) {
+      html += '<div class="error-message">No books found. <a href="index.html">Browse all books</a>.</div>';
+    } else {
+      html += '<div class="results-grid">';
+      filtered.forEach(book => {
+        const priceFormatted = book.price.replace(',', '.');
+        html += `<a href="product.html?id=${book.id}" class="product-card"><div class="product-img"><img src="images/books/${book.image}" loading="lazy" onerror="this.src='https://placehold.co/400x500?text=Cover'"></div><div class="product-info"><div class="product-title">${book.title}</div><div class="btn-view"><img src="images/buttons/btn-${priceFormatted}.png" onerror="this.src='images/buttons/btn-9.99.png'"></div></div></a>`;
+      });
+      html += '</div>';
+    }
+    content.innerHTML = html;
+  })();
 </script>
 </body>
 </html>
