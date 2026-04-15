@@ -7,44 +7,43 @@
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #f9f9f9; color: #1a1a1a; line-height: 1.5; }
-    .page-wrapper { max-width: 1280px; margin: 0 auto; padding: 20px; }
-    .nav-back { margin-bottom: 24px; }
-    .nav-back a { color: #1a1a1a; text-decoration: none; font-weight: 500; }
-    .product-main { background: #fff; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.05); padding: 40px; display: flex; flex-wrap: wrap; gap: 40px; margin-bottom: 40px; }
-    .product-gallery { flex: 1 1 300px; display: flex; justify-content: center; align-items: center; }
-    .product-gallery img { max-width: 100%; max-height: 500px; object-fit: contain; border-radius: 8px; }
-    .product-details { flex: 1 1 400px; }
-    .product-details h1 { font-size: 2rem; font-weight: 700; margin-bottom: 12px; }
-    .product-author { font-size: 1.1rem; color: #555; margin-bottom: 16px; }
-    .product-meta { display: flex; flex-wrap: wrap; gap: 16px 24px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
-    .meta-item { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #666; }
-    .popularity-badge { background: #f0f7ff; color: #0066cc; padding: 8px 16px; border-radius: 30px; font-weight: 500; display: inline-block; margin-bottom: 20px; }
-    .product-description { margin-bottom: 24px; color: #333; }
-    .price-section { margin-bottom: 24px; display: flex; align-items: baseline; gap: 12px; }
-    .current-price { font-size: 2.5rem; font-weight: 700; }
-    .btn-purchase { background: #1a1a1a; color: #fff; padding: 16px 32px; font-size: 1.1rem; font-weight: 600; border-radius: 8px; text-decoration: none; display: inline-block; }
-    .btn-purchase:hover { background: #333; }
-    .recommendations { margin-top: 40px; }
-    .recommendations h2 { font-size: 1.8rem; margin-bottom: 24px; }
-    .book-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-    .book-card { background: #fff; border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.2s; display: flex; flex-direction: column; }
-    .book-card:hover { transform: translateY(-4px); }
-    .book-card-img { aspect-ratio: 3/4; background: #fafafa; display: flex; align-items: center; justify-content: center; padding: 12px; }
-    .book-card-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
-    .book-card-info { padding: 12px; flex-grow: 1; }
-    .book-card-title { font-size: 0.85rem; font-weight: 500; margin-bottom: 8px; }
-    .book-card-btn { background: #1a1a1a; color: #fff; text-align: center; padding: 8px; border-radius: 6px; font-size: 0.8rem; text-decoration: none; display: block; }
-    
-    .order-toast { position: fixed; bottom: 20px; left: 20px; background: #1a1a1a; color: #fff; padding: 16px 24px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); z-index: 1000; display: flex; align-items: center; gap: 12px; max-width: 350px; animation: slideIn 0.4s; }
-    .order-toast img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; background: #333; }
-    .order-toast-content p { margin: 0; font-size: 0.9rem; }
-    .order-toast-content small { color: #aaa; font-size: 0.75rem; }
-    @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
-    @media (max-width: 768px) {
-      .product-main { padding: 24px; }
-      .book-grid { grid-template-columns: repeat(2, 1fr); }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter', sans-serif; background:#f9f9f9; color:#1a1a1a; line-height:1.5; }
+    .page-wrapper { max-width:1280px; margin:0 auto; padding:20px; }
+    .nav-back { margin-bottom:24px; }
+    .nav-back a { color:#1a1a1a; text-decoration:none; font-weight:500; }
+    .product-main { background:#fff; border-radius:16px; box-shadow:0 8px 30px rgba(0,0,0,0.05); padding:40px; display:flex; flex-wrap:wrap; gap:40px; margin-bottom:40px; }
+    .product-gallery { flex:1 1 300px; display:flex; justify-content:center; align-items:center; }
+    .product-gallery img { max-width:100%; max-height:500px; object-fit:contain; border-radius:8px; }
+    .product-details { flex:1 1 400px; }
+    .product-details h1 { font-size:2rem; font-weight:700; margin-bottom:12px; }
+    .product-author { font-size:1.1rem; color:#555; margin-bottom:16px; }
+    .product-meta { display:flex; flex-wrap:wrap; gap:16px 24px; margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid #eee; }
+    .meta-item { display:flex; align-items:center; gap:8px; font-size:0.9rem; color:#666; }
+    .popularity-badge { background:#f0f7ff; color:#0066cc; padding:8px 16px; border-radius:30px; font-weight:500; display:inline-block; margin-bottom:20px; }
+    .product-description { margin-bottom:24px; color:#333; }
+    .price-section { margin-bottom:24px; display:flex; align-items:baseline; gap:12px; }
+    .current-price { font-size:2.5rem; font-weight:700; }
+    .btn-purchase { background:#1a1a1a; color:#fff; padding:16px 32px; font-size:1.1rem; font-weight:600; border-radius:8px; text-decoration:none; display:inline-block; }
+    .btn-purchase:hover { background:#333; }
+    .recommendations { margin-top:40px; }
+    .recommendations h2 { font-size:1.8rem; margin-bottom:24px; }
+    .book-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:20px; }
+    .book-card { background:#fff; border-radius:12px; overflow:hidden; text-decoration:none; color:inherit; transition:transform 0.2s; display:flex; flex-direction:column; }
+    .book-card:hover { transform:translateY(-4px); }
+    .book-card-img { aspect-ratio:3/4; background:#fafafa; display:flex; align-items:center; justify-content:center; padding:12px; }
+    .book-card-img img { max-width:100%; max-height:100%; object-fit:contain; }
+    .book-card-info { padding:12px; flex-grow:1; }
+    .book-card-title { font-size:0.85rem; font-weight:500; margin-bottom:8px; }
+    .book-card-btn { background:#1a1a1a; color:#fff; text-align:center; padding:8px; border-radius:6px; font-size:0.8rem; text-decoration:none; display:block; }
+    .order-toast { position:fixed; bottom:20px; left:20px; background:#1a1a1a; color:#fff; padding:16px 24px; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.2); z-index:1000; display:flex; align-items:center; gap:12px; max-width:350px; animation:slideIn 0.4s; }
+    .order-toast img { width:40px; height:40px; border-radius:50%; object-fit:cover; background:#333; }
+    .order-toast-content p { margin:0; font-size:0.9rem; }
+    .order-toast-content small { color:#aaa; font-size:0.75rem; }
+    @keyframes slideIn { from { opacity:0; transform:translateX(-20px); } to { opacity:1; transform:translateX(0); } }
+    @media (max-width:768px) {
+      .product-main { padding:24px; }
+      .book-grid { grid-template-columns:repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -82,7 +81,6 @@
       const hotness = Math.floor(Math.random() * 41) + 35;
       pageTitle.textContent = `${book.title} | BookAndRead`;
       
-      // ISBN ve Year bilgilerini products.js içinden al (varsa)
       const isbn = book.isbn || book.ISBN || 'N/A';
       const year = book.year || book.Year || 'N/A';
       
@@ -105,7 +103,7 @@
         </div>
       `;
       
-      // You May Also Like (aynı kategoriden 4 kitap)
+      // You May Also Like
       const sameCategory = PRODUCTS.filter(p => p.category === book.category && p.id !== book.id);
       const recommended = sameCategory.sort(() => 0.5 - Math.random()).slice(0, 4);
       if (recommended.length) {
