@@ -28,6 +28,15 @@
     .indicator-dot { width:10px; height:10px; background:#ccc; border-radius:50%; cursor:pointer; }
     .indicator-dot.active { background:#000; }
     .play-pause-btn { background:transparent; border:none; font-size:1.2rem; cursor:pointer; }
+    
+    /* Arama Çubuğu */
+    .search-section { max-width:1280px; margin:30px auto 0; padding:0 16px; }
+    .search-wrapper { display:flex; align-items:center; border:1px solid #ddd; border-radius:4px; overflow:hidden; }
+    .search-dropdown { display:flex; align-items:center; background:#f5f5f5; padding:0 16px; border-right:1px solid #ddd; height:50px; cursor:pointer; }
+    .search-dropdown span { font-weight:500; margin-right:4px; }
+    .search-wrapper input { flex:1; border:none; padding:16px; font-size:1rem; outline:none; }
+    .search-wrapper button { background:#000; color:#fff; border:none; padding:0 24px; height:50px; font-weight:500; cursor:pointer; }
+    
     .category-section { max-width:1280px; margin:48px auto; padding:0 16px; }
     .category-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:20px; }
     .category-head h2 { font-size:1.4rem; }
@@ -45,8 +54,6 @@
     .btn-view { margin-top:auto; }
     .btn-view img { width:100%; max-width:130px; height:auto; cursor:pointer; }
     .hamburger { display:none; }
-    .search-container { max-width:1280px; margin:20px auto 0; padding:0 16px; }
-    .search-container input { width:100%; padding:12px 16px; border:1px solid #ddd; border-radius:4px; font-size:1rem; }
     @media (max-width:768px) {
       .hamburger { display:block; position:fixed; top:16px; right:16px; z-index:200; background:#000; color:#fff; border:none; width:44px; height:44px; font-size:24px; border-radius:4px; }
       .top-nav { display:none; position:fixed; top:70px; left:0; right:0; background:#fff; z-index:150; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,0.1); flex-direction:column; }
@@ -84,7 +91,6 @@
       <a href="#">Tao Le</a><a href="#">Patricia A. Potter</a><a href="#">See all →</a>
     </div>
   </div>
-  <a href="search.html" class="nav-item">🔍 Search</a>
   <a href="#" class="nav-item">Blog</a>
 </div>
 
@@ -96,6 +102,17 @@
 <div class="slider-controls">
   <div class="slider-indicators" id="sliderIndicators"></div>
   <button class="play-pause-btn" id="playPauseBtn">⏸</button>
+</div>
+
+<!-- Arama Çubuğu (Slider Altı) -->
+<div class="search-section">
+  <div class="search-wrapper">
+    <div class="search-dropdown" id="searchCategoryBtn">
+      <span>All</span> ▼
+    </div>
+    <input type="text" id="searchInput" placeholder="Search by Title, Author, Keyword or ISBN">
+    <button id="searchBtn">Search</button>
+  </div>
 </div>
 
 <div id="categoriesContainer" style="max-width:1280px; margin:0 auto; padding:0 16px;"></div>
@@ -148,6 +165,17 @@
   
   document.getElementById('hamburgerBtn').addEventListener('click', ()=> document.getElementById('topNav').classList.toggle('show'));
   
+  // Arama
+  const searchInput = document.getElementById('searchInput');
+  const searchBtn = document.getElementById('searchBtn');
+  function doSearch() {
+    const query = searchInput.value.trim();
+    if (query) window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+  }
+  searchBtn.addEventListener('click', doSearch);
+  searchInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') doSearch(); });
+  
+  // Kategori bölümleri
   const container = document.getElementById('categoriesContainer');
   categories.forEach(cat => {
     const catProducts = products.filter(p => p.category === cat);
